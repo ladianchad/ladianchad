@@ -1,10 +1,5 @@
 ### Hi there 👋
 
-<!--
-**ladianchad/ladianchad** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
 - 🔭 I’m currently working on floatic
 - 🌱 I’m currently learning AWS , Multi Robot Navigation, Deep Learning, etc....
 - 👯 I’m looking to collaborate on ...
@@ -13,4 +8,4 @@ Here are some ideas to get you started:
 - 📫 How to reach me: qhrejddlvltm@gmail.com
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
--->
+
