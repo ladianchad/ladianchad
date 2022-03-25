@@ -12,6 +12,7 @@
   <img src="https://img.shields.io/badge/Kotlin-203296?style=flat-square&logo=Kotlin&logoColor=white"/></a>&nbsp 
   <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/></a>&nbsp 
   <img src="https://img.shields.io/badge/Javascript-ffb13b?style=flat-square&logo=javascript&logoColor=white"/></a>&nbsp 
+  <img src="https://img.shields.io/badge/html-22b13b?style=flat-square&logo=html5&logoColor=white"/></a>&nbsp 
   <img src="https://img.shields.io/badge/css-1572B6?style=flat-square&logo=css3&logoColor=white"/></a>&nbsp 
 </p>
 <h5 align="center">Framework</h5>
@@ -34,7 +35,7 @@
 
 <div align="center" style="text-align:center">
 
-#####[코딩 로봇하는 사람](https://coding-robot.tistory.com)
+<a href="https://coding-robot.tistory.com">코딩 로봇하는 사람<a>
 
 </div>
 
@@ -46,7 +47,7 @@
     현 직장 : 
     <a href="https://floaticinc.com">floatic</a>
 </p>
-<p>업무 : Robot Platform Engineer & Robot Navigation Engineer</p>
+<p align="center">업무 : Robot Platform Engineer & Robot Navigation Engineer</p>
 <p align="center">
   <a href="https://coding-robot.tistory.com"><img src="https://img.shields.io/badge/Tech%20Blog-111111?style=flat-square&logo=tistory&logoColor=white&link=https://coding-robot.tistory.com"/></a>&nbsp
   <a href="qhrejddlvltm@gmail.com"><img src="https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=qhrejddlvltm@gmail.com"/></a>
