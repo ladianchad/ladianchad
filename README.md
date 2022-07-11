@@ -1,5 +1,4 @@
-<h3 align="center">🗣 Language</h3>
-<p align="center">🇰🇷 🇺🇸</p>
+[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=ladianchad)](https://github.com/anuraghazra/github-readme-stats)
 
 <h3 align="center">🧑🏻‍💻 Development Stack</h3>
 
