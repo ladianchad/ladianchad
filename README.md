@@ -55,11 +55,6 @@ Window
 
 <h3 align="center">✋ About Me  </h3>
 <p align="center">
-    현 직장 : 
-    <a href="https://floaticinc.com">floatic</a>
-</p>
-<p align="center">업무 : Robot Platform Engineer & Robot Navigation Engineer</p>
-<p align="center">
   <a href="https://coding-robot.tistory.com"><img src="https://img.shields.io/badge/Tech%20Blog-111111?style=flat-square&logo=tistory&logoColor=white&link=https://coding-robot.tistory.com"/></a>&nbsp
   <a href="qhrejddlvltm@gmail.com"><img src="https://img.shields.io/badge/Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=qhrejddlvltm@gmail.com"/></a>
 </p>
