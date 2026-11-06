@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pattern inspection case study · ChanHui Jung</title>
+<meta name="description" content="An inspection program on a Jetson Nano. It found circular marks in images from two Basler cameras, measured where they sat, and passed or failed each part.">
+<meta name="author" content="ChanHui Jung">
+<link rel="canonical" href="https://ladianchad.github.io/ladianchad/projects/unieye.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pattern inspection case study · ChanHui Jung">
+<meta property="og:description" content="An inspection program on a Jetson Nano. It found circular marks in images from two Basler cameras, measured where they sat, and passed or failed each part.">
+<meta property="og:url" content="https://ladianchad.github.io/ladianchad/projects/unieye.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1f4fd1;text-decoration:none}a:hover{color:#163a9c;text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181d; background: #ffffff; font-size: 17px; line-height: 1.7">
+
+  <header style="border-bottom: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="../index.html" style="color: #16181d; font-weight: 600; font-size: 15px">ChanHui Jung</a>
+      <nav aria-label="Site" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px">
+        <a href="../index.html" style="color: #4a4f5c">Home</a>
+        <a href="../index.html#projects" style="color: #4a4f5c">Projects</a>
+        <a href="../cv.pdf" style="color: #1f4fd1; font-weight: 600">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <article style="max-width: 760px; margin: 0 auto; padding: 40px 32px 96px; display: flex; flex-direction: column; gap: 56px">
+
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <a href="../index.html#projects" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; color: #4a4f5c"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>All projects</a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1f4fd1">Industry project · UNIEYE · Feb–Jul 2020</p>
+      <h1 style="margin: 0; font-size: 42px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">Pattern inspection with two industrial cameras</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: #2b2f38">An inspection program on a Jetson Nano. It found circular marks in images from two Basler cameras, measured where they sat, and passed or failed each part.</p>
+      <dl style="margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px 24px; padding: 20px 0; border-top: 1px solid #e6e8ec; border-bottom: 1px solid #e6e8ec">
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Role</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">User interface and communication</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Team</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">2 students</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Hardware</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Jetson Nano, 2 × Basler acA2500-14gm</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Stack</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">C++, Qt</dd></div>
+      </dl>
+    </div>
+
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+      <img src="../assets/unieye-gui.jpg" alt="Inspection program window with two camera views of circular marks, pass results, counters and offset plots" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #e6e8ec">
+      <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">The inspection program during a run. Both cameras matched the target mark, with scores of 97.48 and 96.55, and the part passed. The right panel counts failures by type; the plots track the mark's offset over successive parts.</figcaption>
+    </figure>
+
+    <section aria-labelledby="approach-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="approach-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">How it worked</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px">
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span>
+          <b style="font-size: 16px; font-weight: 600">Capture</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Frames were downscaled from 2592×1944 to 324×243. At 648×486 the Jetson Nano could not keep up.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span>
+          <b style="font-size: 16px; font-weight: 600">Filter</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">A Gaussian filter and Canny edge detection, both implemented by hand.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span>
+          <b style="font-size: 16px; font-weight: 600">Find circles</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Contours with a radius of 10–150 px, at least 15 px apart, whose distance from the center varied by less than 15%.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">4</span>
+          <b style="font-size: 16px; font-weight: 600">Judge</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">The mark's score and X/Y position were checked against a zero-set reference, an allowed pixel offset and an accuracy threshold.</span>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="role-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="role-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">My part</h2>
+      <p style="margin: 0">On a team of two, my part was the Qt interface shown above and the communication layer.</p>
+      <p style="margin: 0">The communication layer linked the Jetson Nano to a host PC. The system was built as a prototype.</p>
+    </section>
+
+    <nav aria-label="More projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 32px; border-top: 1px solid #e6e8ec">
+      <a href="recycling-robot.html" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Previous project</span><span style="font-size: 16px; font-weight: 600">Latte Panda: recycling and donation robot</span></a>
+      <a href="../index.html#projects" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Back</span><span style="font-size: 16px; font-weight: 600">All projects</span></a>
+    </nav>
+  </article>
+
+  <footer style="border-top: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #5b6170">
+      <span>ChanHui Jung · Ann Arbor, Michigan</span>
+      <span>Last updated Nov 2026</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

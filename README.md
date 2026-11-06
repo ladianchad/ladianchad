@@ -1,97 +1,48 @@
-<h1 align="center">ChanHui Jung &nbsp;·&nbsp; 정찬희</h1>
+# ChanHui Jung (정찬희)
 
-<p align="center">
-  <b>Robotics Software Engineer</b> &nbsp;·&nbsp; Multi-Robot Navigation · MAPF · Fleet Autonomy
-</p>
-<p align="center">
-  <i>“Making robot fleets move like crowds — not gridlock.”</i>
-</p>
+M.S. student in Robotics at the University of Michigan. I work on multi-robot navigation and multi-agent path finding, with a focus on crowded spaces where robots keep blocking each other.
 
-<p align="center">
-  <a href="https://ladianchad.github.io/ladianchad/"><img src="https://img.shields.io/badge/Portfolio-Visit_Site-22d3ee?style=for-the-badge&logo=github&logoColor=white&labelColor=05080f"/></a>
-  <a href="https://www.linkedin.com/in/ch-ladi"><img src="https://img.shields.io/badge/LinkedIn-ch--ladi-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
-  <a href="https://coding-robot.tistory.com"><img src="https://img.shields.io/badge/Blog-coding--robot-FF5A4D?style=for-the-badge&logo=tistory&logoColor=white"/></a>
-  <a href="mailto:qhrejddlvltm@gmail.com"><img src="https://img.shields.io/badge/Email-Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white"/></a>
-</p>
+Before Michigan I spent three years in industry. At Floatic I built the navigation stack and middleware for a fleet of warehouse robots. At Metafarmers I led a seven-person robotics team that put two agricultural robots into production. I am looking for PhD positions starting in Fall 2027.
 
-<p align="center">
-  🤖 Robotics AI Team Lead <b>@ Metafarmers</b> &nbsp;·&nbsp; ex-<b>Floatic</b> (warehouse AMRs) &nbsp;·&nbsp; 📍 Seoul, KR
-</p>
+**Website:** [ladianchad.github.io/ladianchad](https://ladianchad.github.io/ladianchad/) ·
+[Google Scholar](https://scholar.google.com/citations?user=pR_cJxIAAAAJ&hl=en) ·
+[LinkedIn](https://www.linkedin.com/in/ch-ladi) ·
+[robotics-study](https://robotics-study.github.io/) ·
+[Blog (Korean)](https://coding-robot.tistory.com/) ·
+[chanhui@umich.edu](mailto:chanhui@umich.edu)
 
-<br>
+## Experience
 
-<p align="center">
-  <a href="https://github.com/anuraghazra/github-readme-stats"><img height="165" src="https://github-readme-stats.vercel.app/api?username=ladianchad&show_icons=true&hide_border=true&theme=tokyonight&count_private=true"/></a>
-  <a href="https://solved.ac/qhrejddlvltm"><img height="165" src="http://mazassumnida.wtf/api/generate_badge?boj=qhrejddlvltm"/></a>
-</p>
+| Period | Organization | Role |
+|---|---|---|
+| Sep 2025 – Apr 2026 | [Metafarmers](https://metafarmers.ai) | Robotics Software Team Lead |
+| Jul 2022 – Sep 2024 | Floatic | Robotics Software and Platform Engineer |
 
-<br>
+## Publications
 
-<h3 align="center">🧑🏻‍💻 Development Stack</h3>
+- S. Im, S. Yoo, H. Kang, **C. Jung**, D. Han, M.-S. Kang. *A Study on Improving Conflict Based Search with Continuous Time Using Space Utilization.* Journal of the Korean Society for Precision Engineering, 43(4), 317–324, 2026. [DOI](https://doi.org/10.7736/JKSPE.025.045)
+- S. Yoo, S. Im, H. Kang, **C. Jung**, D. Han, M.-S. Kang. *A Study on Improving Multi-agent Path Finding in Congested Environments Using Agent Merging and Splitting.* Journal of the Korean Society for Precision Engineering, 43(2), 123–131, 2026. [DOI](https://doi.org/10.7736/JKSPE.025.044)
 
-<h5 align="center">Programming</h5>
-<p align="center">
-  <img src="https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=C&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/C%23-00609C?style=flat-square&logo=Csharp&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Python-3766AB?style=flat-square&logo=Python&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Kotlin-203296?style=flat-square&logo=Kotlin&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=Java&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/JavaScript-ffb13b?style=flat-square&logo=javascript&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/SQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
-</p>
+## Projects
 
-<h5 align="center">Robotics &amp; ML</h5>
-<p align="center">
-  <img src="https://img.shields.io/badge/ROS-22314E?style=flat-square&logo=ROS&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/ROS2-22314E?style=flat-square&logo=ROS&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Nav2-1A5276?style=flat-square&logo=ROS&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/SLAM_·_FAST--LIO-2C3E50?style=flat-square&logo=lidar&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Qt_·_PyQt-41CD52?style=flat-square&logo=qt&logoColor=white"/>
-</p>
+| Project | Context | Case study |
+|---|---|---|
+| Omni Farmer: agricultural robots | Metafarmers, 2025–2026 | [Read](https://ladianchad.github.io/ladianchad/projects/omni-farmer.html) |
+| Apple-harvesting exhibit robot | Metafarmers, 2026 | [Read](https://ladianchad.github.io/ladianchad/projects/gwacheon-apple-robot.html) |
+| Flody: warehouse robot fleet | Floatic, 2022–2024 | [Read](https://ladianchad.github.io/ladianchad/projects/flody.html) |
+| Churo: dog behavior recognition | ROBOI contract, 2021 | [Read](https://ladianchad.github.io/ladianchad/projects/churo.html) |
+| Item Assembly: stereo hole detection | AIRO Lab, 2020 | [Read](https://ladianchad.github.io/ladianchad/projects/item-assembly.html) |
+| Help: marine rescue-assist robot | Capstone, 2020–2022 | [Read](https://ladianchad.github.io/ladianchad/projects/rescue-robot.html) |
+| Latte Panda: recycling and donation robot | Intelligent Robot Crash Lab, 2020 | [Read](https://ladianchad.github.io/ladianchad/projects/recycling-robot.html) |
+| Pattern inspection with two industrial cameras | UNIEYE, Feb–Jul 2020 | [Read](https://ladianchad.github.io/ladianchad/projects/unieye.html) |
 
-<h5 align="center">Backend &amp; Platform</h5>
-<p align="center">
-  <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/NestJS-E0234E?style=flat-square&logo=nestjs&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB"/>&nbsp;
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
-</p>
+## Open source
 
-<h5 align="center">DevOps &amp; Tools</h5>
-<p align="center">
-  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/Arduino-00979D?style=flat-square&logo=arduino&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/MATLAB-0076A8?style=flat-square&logo=mathworks&logoColor=white"/>&nbsp;
-  <img src="https://img.shields.io/badge/SolidWorks-E1251B?style=flat-square&logo=dassaultsystemes&logoColor=white"/>
-</p>
+- [navigation2 #3068](https://github.com/ros-navigation/navigation2/pull/3068): proposed a plugin-based navigator design, shipped as `nav2_core::NavigatorBase`.
+- [ros2/rcl #1003](https://github.com/ros2/rcl/pull/1003): fixed `rcl_wait` returning an error when a timer is cancelled.
+- [navigation2 #3141](https://github.com/ros-navigation/navigation2/pull/3141): fixed path joining in `RewrittenYaml`.
+- [navigation2 #3927](https://github.com/ros-navigation/navigation2/pull/3927): fixed the MPPI controller test build.
 
-<h5 align="center">OS</h5>
-<p align="center">
-  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black"/>&nbsp;
-  <img src="https://img.shields.io/badge/Windows-0078D6?style=flat-square&logo=windows&logoColor=white"/>
-</p>
+## Study notes
 
-<br>
-
-<h3 align="center">🚀 Currently</h3>
-<p align="center">
-  Leading the Robotics AI team at <b>Metafarmers</b> — autonomous multi-robot navigation &amp; fleet<br>
-  management for smart farms. Previously built warehouse AMR fleets at <b>Floatic</b>.<br>
-  Open-source contributor to <a href="https://github.com/ros-navigation/navigation2">ROS2 Navigation2</a>.
-</p>
-<p align="center">
-  <b>→ Full portfolio, projects &amp; publications: <a href="https://ladianchad.github.io/ladianchad/">ladianchad.github.io/ladianchad</a></b>
-</p>
-
-<br>
-
-<p align="center">
-  <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fladianchad&count_bg=%2322D3EE&title_bg=%23555555&icon=github.svg&icon_color=%23E1DEDE&title=hits&edge_flat=false"/></a>
-</p>
+[robotics-study](https://robotics-study.github.io/) is a set of open study notes in English and Korean. Each algorithm is implemented in both C++ and Python and replayed step by step in the browser: [multi-robot motion planning](https://robotics-study.github.io/mrmp_introduction/), [navigation planning](https://robotics-study.github.io/navigation_basic/), [Modern Robotics](https://robotics-study.github.io/modern_robotics/) and [notes for ROB 501](https://robotics-study.github.io/linear_algebra_to_kalman/).

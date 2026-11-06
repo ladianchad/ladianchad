@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Item Assembly case study · ChanHui Jung</title>
+<meta name="description" content="Vision for a furniture-assembly robot. The pipeline found screw holes in two camera images and turned them into a 3D pose that the arm could use to insert a screw.">
+<meta name="author" content="ChanHui Jung">
+<link rel="canonical" href="https://ladianchad.github.io/ladianchad/projects/item-assembly.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Item Assembly case study · ChanHui Jung">
+<meta property="og:description" content="Vision for a furniture-assembly robot. The pipeline found screw holes in two camera images and turned them into a 3D pose that the arm could use to insert a screw.">
+<meta property="og:url" content="https://ladianchad.github.io/ladianchad/projects/item-assembly.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1f4fd1;text-decoration:none}a:hover{color:#163a9c;text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181d; background: #ffffff; font-size: 17px; line-height: 1.7">
+
+  <header style="border-bottom: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="../index.html" style="color: #16181d; font-weight: 600; font-size: 15px">ChanHui Jung</a>
+      <nav aria-label="Site" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px">
+        <a href="../index.html" style="color: #4a4f5c">Home</a>
+        <a href="../index.html#projects" style="color: #4a4f5c">Projects</a>
+        <a href="../cv.pdf" style="color: #1f4fd1; font-weight: 600">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <article style="max-width: 760px; margin: 0 auto; padding: 40px 32px 96px; display: flex; flex-direction: column; gap: 56px">
+
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <a href="../index.html#projects" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; color: #4a4f5c"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>All projects</a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1f4fd1">Lab project · AIRO Lab · 2020</p>
+      <h1 style="margin: 0; font-size: 42px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">Item Assembly: finding screw holes with a stereo camera</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: #2b2f38">Vision for a furniture-assembly robot. The pipeline found screw holes in two camera images and turned them into a 3D pose that the arm could use to insert a screw.</p>
+      <dl style="margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px 24px; padding: 20px 0; border-top: 1px solid #e6e8ec; border-bottom: 1px solid #e6e8ec">
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Role</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Vision researcher (undergraduate)</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Program</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Item Assembly AI Robot Challenge, government-funded, multi-lab</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Lab</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">AIRO Lab, Prof. Min-Sung Kang</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Stack</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">C++, ROS, YOLOv5, Basler cameras</dd></div>
+      </dl>
+    </div>
+
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+      <img src="../assets/item-assembly-stereo.jpg" alt="Left and right camera images of a furniture panel, with detected screw holes marked" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #e6e8ec">
+      <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Left and right camera views of a panel, with the holes the detector picked out.</figcaption>
+    </figure>
+
+    <section aria-labelledby="problem-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="problem-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The problem</h2>
+      <p style="margin: 0">The challenge asked teams to automate furniture assembly with a robot arm. Before the arm could drive a screw, it needed the position and direction of each hole in its own frame.</p>
+      <p style="margin: 0">Screw holes are small and low in contrast, and a panel has several of them in a fixed layout. That layout is useful: a set of detections that does not fit it is probably wrong.</p>
+    </section>
+
+    <section aria-labelledby="approach-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="approach-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The pipeline</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px">
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span>
+          <b style="font-size: 16px; font-weight: 600">Detect</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">A YOLOv5 model trained on hole images found candidates in each camera frame.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span>
+          <b style="font-size: 16px; font-weight: 600">Match pattern</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Every combination of detected circles was checked against the known hole layout, which dropped false hits.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span>
+          <b style="font-size: 16px; font-weight: 600">Triangulate</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Matched holes in the left and right images became 3D points, using the calibrated intrinsics, baseline and camera angle.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">4</span>
+          <b style="font-size: 16px; font-weight: 600">Publish</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">The hole pose went to the arm as a TF frame through ROS services, and was projected back to pixels to check alignment.</span>
+        </li>
+      </ol>
+      <p style="margin: 0">The two cameras were angled toward each other rather than mounted in parallel, so the triangulation includes the camera angle instead of using the parallel-stereo disparity formula.</p>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <div style="border-radius: 12px; overflow: hidden; border: 1px solid #e6e8ec; background: #1e1e1e">
+          <img src="../assets/item-assembly-triangulation-code.png" alt="C++ code computing a 3D point from left and right pixel coordinates, camera intrinsics, baseline and camera angle" style="display: block; width: 100%; height: auto">
+        </div>
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Triangulation for the converging camera pair: pixel coordinates in both images, focal lengths and principal points, the baseline <code style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px">dist</code> and the camera <code style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px">angle</code> give the point in the camera frame.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="system-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="system-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">How it ran</h2>
+      <p style="margin: 0">The pipeline ran as three ROS services.</p>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid #e6e8ec">
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><code style="flex: 0 0 180px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: #16181d">camera_server</code><span style="flex: 1 1 300px; font-size: 15px; color: #2b2f38">Captured frames from the two Basler cameras.</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><code style="flex: 0 0 180px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: #16181d">hole_find_server</code><span style="flex: 1 1 300px; font-size: 15px; color: #2b2f38">Ran detection, pattern matching and triangulation, and returned the hole pose.</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><code style="flex: 0 0 180px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; color: #16181d">update_tf</code><span style="flex: 1 1 300px; font-size: 15px; color: #2b2f38">Published the hole pose as a TF frame.</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="role-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="role-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">My part</h2>
+      <p style="margin: 0">On the AIRO Lab team I owned the vision part: finding the screw holes for assembly and locating them in 3D with stereo vision. The pipeline on this page, from camera calibration to the pose sent to the arm, is that work.</p>
+      <a href="https://www.newshyu.com/news/articleView.html?idxno=1001038" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 10px; border: 1px solid #cfd3da; color: #16181d; font-size: 15px; font-weight: 600; text-decoration: none">News article on the challenge (Korean)<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>    </section>
+
+    <nav aria-label="More projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 32px; border-top: 1px solid #e6e8ec">
+      <a href="churo.html" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Previous project</span><span style="font-size: 16px; font-weight: 600">Churo: dog behavior recognition</span></a>
+      <a href="rescue-robot.html" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Next project</span><span style="font-size: 16px; font-weight: 600">Help: marine rescue-assist robot</span></a>
+    </nav>
+  </article>
+
+  <footer style="border-top: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #5b6170">
+      <span>ChanHui Jung · Ann Arbor, Michigan</span>
+      <span>Last updated Nov 2026</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
