@@ -33,7 +33,7 @@ Before Michigan I spent three years in industry. At Floatic I built the navigati
 | Churo: dog behavior recognition | ROBOI contract, 2021 | [Read](https://ladianchad.github.io/ladianchad/projects/churo.html) |
 | Item Assembly: stereo hole detection | AIRO Lab, 2020 | [Read](https://ladianchad.github.io/ladianchad/projects/item-assembly.html) |
 | Help: marine rescue-assist robot | Capstone, 2020–2022 | [Read](https://ladianchad.github.io/ladianchad/projects/rescue-robot.html) |
-| Recycling and donation robot | Intelligent Robot Crash Lab, 2020 | [Read](https://ladianchad.github.io/ladianchad/projects/recycling-robot.html) |
+| Latte Panda: recycling and donation robot | Intelligent Robot Crash Lab, 2020 | [Read](https://ladianchad.github.io/ladianchad/projects/recycling-robot.html) |
 | Pattern inspection with two industrial cameras | UNIEYE, Feb–Jul 2020 | [Read](https://ladianchad.github.io/ladianchad/projects/unieye.html) |
 
 ## Open source
