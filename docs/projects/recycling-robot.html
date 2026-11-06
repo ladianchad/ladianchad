@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recycling robot case study · ChanHui Jung</title>
+<meta name="description" content="A service robot for public recycling. It finds a person holding a disposable cup, sorts the cup into a paper or plastic bin, and invites a donation through a QR code.">
+<meta name="author" content="ChanHui Jung">
+<link rel="canonical" href="https://ladianchad.github.io/ladianchad/projects/recycling-robot.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recycling robot case study · ChanHui Jung">
+<meta property="og:description" content="A service robot for public recycling. It finds a person holding a disposable cup, sorts the cup into a paper or plastic bin, and invites a donation through a QR code.">
+<meta property="og:url" content="https://ladianchad.github.io/ladianchad/projects/recycling-robot.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1f4fd1;text-decoration:none}a:hover{color:#163a9c;text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181d; background: #ffffff; font-size: 17px; line-height: 1.7">
+
+  <header style="border-bottom: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="../index.html" style="color: #16181d; font-weight: 600; font-size: 15px">ChanHui Jung</a>
+      <nav aria-label="Site" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px">
+        <a href="../index.html" style="color: #4a4f5c">Home</a>
+        <a href="../index.html#projects" style="color: #4a4f5c">Projects</a>
+        <a href="../cv.pdf" style="color: #1f4fd1; font-weight: 600">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <article style="max-width: 760px; margin: 0 auto; padding: 40px 32px 96px; display: flex; flex-direction: column; gap: 56px">
+
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <a href="../index.html#projects" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; color: #4a4f5c"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>All projects</a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1f4fd1">Course project · Intelligent Robot Crash Lab · 2020</p>
+      <h1 style="margin: 0; font-size: 42px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">A mobile robot that sorts cups and collects donations</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: #2b2f38">A service robot for public recycling. It finds a person holding a disposable cup, sorts the cup into a paper or plastic bin, and invites a donation through a QR code.</p>
+      <dl style="margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px 24px; padding: 20px 0; border-top: 1px solid #e6e8ec; border-bottom: 1px solid #e6e8ec">
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Team</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">6 students</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Compute</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">LattePanda Alpha, Jetson TX2, Arduino Mega</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Sensors</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">RealSense D435, touchscreen</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Stack</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">ROS, C++, YOLOv5, TensorRT, PyQt</dd></div>
+      </dl>
+      <a href="https://youtu.be/2ig5qAAA0DM" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 10px; background: #1f4fd1; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5v14l12-7z"></path></svg>Watch the demo video</a>
+    </div>
+
+    <section aria-labelledby="flow-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="flow-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">What a visit looks like</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px">
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span>
+          <b style="font-size: 16px; font-weight: 600">Approach</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">The robot drives around, finds a person and greets them with a motion and a short introduction.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span>
+          <b style="font-size: 16px; font-weight: 600">Sort</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">It asks for a disposable cup, recognizes it as paper or plastic, and tilts the matching bin open.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span>
+          <b style="font-size: 16px; font-weight: 600">Donate</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">The touchscreen offers a donation by QR code and plays a thank-you video.</span>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="system-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="system-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The system</h2>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <div style="padding: 12px; border-radius: 12px; border: 1px solid #e6e8ec; background: #ffffff">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 504" style="display: block; width: 100%; height: auto" font-family="Inter, system-ui, sans-serif" role="img" aria-label="System diagram: a RealSense camera feeds a YOLO server, which offloads detection to a Jetson TX2 over TCP, and a point manager for depth. Both talk to a robot core state machine, which drives Dynamixel motors, an Arduino Mega and a touchscreen UI.">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5b6170"/></marker>
+  </defs>
+  <rect x="200" y="112" width="664" height="380" rx="16" fill="#f7f8fa" stroke="#e6e8ec"/>
+  <text x="216" y="480" font-size="11" font-weight="600" letter-spacing="0.08em" fill="#8a909c">ROS NODES</text>
+  <g fill="none" stroke="#8a909c" stroke-width="1.5">
+    <path d="M166 240H196V172H222" marker-end="url(#ah)"/>
+    <path d="M166 268H196V338H222" marker-end="url(#ah)"/>
+    <path d="M91 294V450H496" marker-end="url(#ah)"/>
+    <path d="M300 82V138" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+    <path d="M350 142V86" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+    <path d="M428 172H462V238H496" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <path d="M428 338H462V286H496" marker-start="url(#ah)" marker-end="url(#ah)"/>
+    <path d="M658 244H690V172H712" marker-end="url(#ah)"/>
+    <path d="M658 280H690V352H712" marker-end="url(#ah)"/>
+    <path d="M579 314V416" marker-start="url(#ah)" marker-end="url(#ah)"/>
+  </g>
+  <g font-size="11" fill="#5b6170">
+    <text x="202" y="214">color</text>
+    <text x="202" y="300">depth</text>
+    <text x="100" y="442">color</text>
+    <text x="292" y="116" text-anchor="end">detections</text>
+    <text x="358" y="116">mode + image</text>
+    <text x="325" y="104" text-anchor="middle" font-size="10" font-weight="600" fill="#8a909c">TCP</text>
+  </g>
+  <g font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="#5b6170">
+    <text x="468" y="194">/yolo_mode</text>
+    <text x="468" y="207">/yolo_result</text>
+    <text x="468" y="328">/point</text>
+    <text x="684" y="206" text-anchor="end">/tilt, /motion</text>
+    <text x="684" y="330" text-anchor="end">/servo</text>
+    <text x="684" y="343" text-anchor="end">/speed_set</text>
+    <text x="573" y="374" text-anchor="end">/TerminalToPyqt</text>
+  </g>
+  <g text-anchor="middle">
+    <rect x="16" y="214" width="150" height="80" rx="10" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="91" y="249" font-size="14" font-weight="600" fill="#16181d">RealSense D435</text>
+    <text x="91" y="269" font-size="12" fill="#5b6170">color + depth</text>
+
+    <rect x="226" y="22" width="198" height="60" rx="10" fill="#ffffff" stroke="#8a909c" stroke-dasharray="5 4"/>
+    <text x="325" y="48" font-size="14" font-weight="600" fill="#16181d">Jetson TX2</text>
+    <text x="325" y="67" font-size="12" fill="#5b6170">YOLOv5 + TensorRT</text>
+
+    <rect x="226" y="142" width="198" height="60" rx="10" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="325" y="168" font-size="14" font-weight="600" fill="#16181d">YOLO server</text>
+    <text x="325" y="187" font-size="12" fill="#5b6170">person · cup · hand sign</text>
+
+    <rect x="226" y="308" width="198" height="60" rx="10" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="325" y="334" font-size="14" font-weight="600" fill="#16181d">Point manager</text>
+    <text x="325" y="353" font-size="12" fill="#5b6170">depth grid · person distance</text>
+
+    <rect x="500" y="214" width="158" height="96" rx="12" fill="#ffffff" stroke="#1f4fd1" stroke-width="2"/>
+    <text x="579" y="257" font-size="15" font-weight="700" fill="#16181d">Robot core</text>
+    <text x="579" y="277" font-size="12" fill="#5b6170">state machine</text>
+
+    <rect x="716" y="120" width="140" height="104" rx="10" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="786" y="144" font-size="14" font-weight="600" fill="#16181d">Dynamixel</text>
+    <rect x="732" y="156" width="108" height="24" rx="12" fill="#f1f3f6"/>
+    <text x="786" y="172" font-size="12" fill="#2b2f38">bin tilting</text>
+    <rect x="732" y="186" width="108" height="24" rx="12" fill="#f1f3f6"/>
+    <text x="786" y="202" font-size="12" fill="#2b2f38">panda motion</text>
+
+    <rect x="716" y="300" width="140" height="104" rx="10" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="786" y="324" font-size="14" font-weight="600" fill="#16181d">Arduino Mega</text>
+    <rect x="732" y="336" width="108" height="24" rx="12" fill="#f1f3f6"/>
+    <text x="786" y="352" font-size="12" fill="#2b2f38">servo</text>
+    <rect x="732" y="366" width="108" height="24" rx="12" fill="#f1f3f6"/>
+    <text x="786" y="382" font-size="12" fill="#2b2f38">drive motors, PID</text>
+
+    <rect x="500" y="420" width="158" height="60" rx="10" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="579" y="446" font-size="14" font-weight="600" fill="#16181d">Touchscreen UI</text>
+    <text x="579" y="465" font-size="12" fill="#5b6170">PyQt</text>
+  </g>
+</svg>
+        </div>
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Detection runs on a separate Jetson TX2 reached over TCP; the rest runs as ROS nodes. The robot core is a state machine that calls the perception servers and drives the motors and the touchscreen UI.</figcaption>
+      </figure>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid #e6e8ec">
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><b style="flex: 0 0 160px; font-size: 15px; font-weight: 600">Detection</b><span style="flex: 1 1 300px; font-size: 15px; color: #2b2f38">Color frames go to a YOLO server, which sends them to the Jetson TX2 with a mode: find people, classify a cup as paper or plastic, or read a hand sign. YOLOv5 ran on the TX2 with TensorRT.</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><b style="flex: 0 0 160px; font-size: 15px; font-weight: 600">Obstacle avoidance</b><span style="flex: 1 1 300px; font-size: 15px; color: #2b2f38">The 640×480 depth image is low-pass filtered, averaged over 20 frames and split into a 3×5 grid. The nearest distance in each cell, weighted by a sigmoid, sets the left and right wheel speeds.</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><b style="flex: 0 0 160px; font-size: 15px; font-weight: 600">Following a person</b><span style="flex: 1 1 300px; font-size: 15px; color: #2b2f38">Bearing comes from the horizontal position of the detection; distance is the mean depth over a 100×100 window at its center.</span></div>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><b style="flex: 0 0 160px; font-size: 15px; font-weight: 600">Actuation</b><span style="flex: 1 1 300px; font-size: 15px; color: #2b2f38">Dynamixel motors play the robot's greeting motions and tilt the bins; an Arduino Mega runs the drive motors with PID control over rosserial.</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="role-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="role-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">My part</h2>
+      <p style="margin: 0">On a team of six I worked on the system design, motor control, communication, sensor control, the algorithms, the electrical system and the UI.</p>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <img src="../assets/recycling-robot.jpg" alt="The robot in its white mug-shaped shell with a toy panda on top, on stage in front of a projection screen" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #e6e8ec">
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">The robot in its mug-shaped shell at the fall 2020 Crash Lab demo. Frame from the team's demo video.</figcaption>
+      </figure>
+    </section>
+
+    <nav aria-label="More projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 32px; border-top: 1px solid #e6e8ec">
+      <a href="rescue-robot.html" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Previous project</span><span style="font-size: 16px; font-weight: 600">Help: marine rescue-assist robot</span></a>
+      <a href="unieye.html" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Next project</span><span style="font-size: 16px; font-weight: 600">Pattern inspection with two cameras</span></a>
+    </nav>
+  </article>
+
+  <footer style="border-top: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #5b6170">
+      <span>ChanHui Jung · Ann Arbor, Michigan</span>
+      <span>Last updated Nov 2026</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

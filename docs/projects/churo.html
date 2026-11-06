@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Churo case study · ChanHui Jung</title>
+<meta name="description" content="Behavior recognition for a dog-care robot. The pipeline found the dog in each frame, followed it over time, and sorted short clips into five behaviors.">
+<meta name="author" content="ChanHui Jung">
+<link rel="canonical" href="https://ladianchad.github.io/ladianchad/projects/churo.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Churo case study · ChanHui Jung">
+<meta property="og:description" content="Behavior recognition for a dog-care robot. The pipeline found the dog in each frame, followed it over time, and sorted short clips into five behaviors.">
+<meta property="og:url" content="https://ladianchad.github.io/ladianchad/projects/churo.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1f4fd1;text-decoration:none}a:hover{color:#163a9c;text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181d; background: #ffffff; font-size: 17px; line-height: 1.7">
+
+  <header style="border-bottom: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="../index.html" style="color: #16181d; font-weight: 600; font-size: 15px">ChanHui Jung</a>
+      <nav aria-label="Site" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px">
+        <a href="../index.html" style="color: #4a4f5c">Home</a>
+        <a href="../index.html#projects" style="color: #4a4f5c">Projects</a>
+        <a href="../cv.pdf" style="color: #1f4fd1; font-weight: 600">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <article style="max-width: 760px; margin: 0 auto; padding: 40px 32px 96px; display: flex; flex-direction: column; gap: 56px">
+
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <a href="../index.html#projects" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; color: #4a4f5c"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>All projects</a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1f4fd1">Contract · ROBOI · 2021</p>
+      <h1 style="margin: 0; font-size: 42px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">Churo: recognizing dog behavior from home camera video</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: #2b2f38">Behavior recognition for a dog-care robot. The pipeline found the dog in each frame, followed it over time, and sorted short clips into five behaviors.</p>
+      <dl style="margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px 24px; padding: 20px 0; border-top: 1px solid #e6e8ec; border-bottom: 1px solid #e6e8ec">
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Role</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Independent contractor</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Client</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">ROBOI Co.</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Classes</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">fast, slow, jump, stand, sleep</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Stack</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Python, PyTorch, YOLOv5, SORT, OpenCV</dd></div>
+      </dl>
+    </div>
+
+    <section aria-labelledby="problem-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="problem-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The problem</h2>
+      <p style="margin: 0">The robot watched a dog through an indoor camera and needed to tell what it was doing: sleeping, standing, walking, running or jumping. A single frame cannot separate a slow walk from a run, so the model had to look at motion over time.</p>
+      <p style="margin: 0">No labeled clips existed for this camera setup, so building the training set was part of the work.</p>
+    </section>
+
+    <section aria-labelledby="approach-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="approach-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The pipeline</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span>
+          <b style="font-size: 16px; font-weight: 600">Detect and track</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">YOLOv5 found dogs in each frame, keeping only the dog class. SORT linked the boxes across frames so each clip follows one dog.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span>
+          <b style="font-size: 16px; font-weight: 600">Label clips</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">A small tool showed each 20-frame clip as a grid with its boxes. One key press saved the clip as a 640×480, 30 fps video under one of the five classes.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span>
+          <b style="font-size: 16px; font-weight: 600">Classify</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">A ResNet-CRNN video classifier read the clip: ResNet features for each frame, then an LSTM over the 20 frames.</span>
+        </li>
+      </ol>
+      <p style="margin: 0">I also wrote a generator for synthetic bounding-box sequences, one per behavior class, so an LSTM could be trained on box motion alone.</p>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <img src="../assets/churo-synthetic-code.jpg" alt="Python code that generates synthetic sequences of bounding boxes for each behavior class" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #e6e8ec">
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Generator for synthetic 20-step box sequences, one call per behavior class.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="results-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="results-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">Results</h2>
+      <p style="margin: 0">The classifier was trained for 120 epochs and evaluated on a held-out set of 344 clips.</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-top: 1px solid #e6e8ec"><span style="font-size: 24px; font-weight: 700">344</span><span style="font-size: 14px; color: #5b6170">test clips</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-top: 1px solid #e6e8ec"><span style="font-size: 24px; font-weight: 700">90.4–96.8%</span><span style="font-size: 14px; color: #5b6170">test accuracy, epochs 117–120</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-top: 1px solid #e6e8ec"><span style="font-size: 24px; font-weight: 700">5</span><span style="font-size: 14px; color: #5b6170">behavior classes</span></div>
+      </div>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <img src="../assets/churo-training.jpg" alt="Training loss and accuracy curves over 120 epochs" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #e6e8ec">
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Loss and accuracy over 120 training epochs.</figcaption>
+      </figure>
+      <p style="margin: 0; font-size: 15px; color: #5b6170">Frames from the client's cameras are not shown here.</p>
+    </section>
+
+    <section aria-labelledby="role-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="role-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">My part</h2>
+      <p style="margin: 0">A contract for ROBOI Co. that a friend and I took on together. We built the pipeline that detects the dog and classifies its behavior with YOLOv5 and LSTM-based motion analysis.</p>
+    </section>
+
+    <nav aria-label="More projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 32px; border-top: 1px solid #e6e8ec">
+      <a href="flody.html" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Previous project</span><span style="font-size: 16px; font-weight: 600">Flody: warehouse robot fleet</span></a>
+      <a href="item-assembly.html" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Next project</span><span style="font-size: 16px; font-weight: 600">Item Assembly: stereo hole detection</span></a>
+    </nav>
+  </article>
+
+  <footer style="border-top: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #5b6170">
+      <span>ChanHui Jung · Ann Arbor, Michigan</span>
+      <span>Last updated Nov 2026</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

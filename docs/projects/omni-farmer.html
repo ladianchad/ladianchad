@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Omni Farmer case study · ChanHui Jung</title>
+<meta name="description" content="Metafarmers&#x27; multi-purpose farm robot. I led the robotics software team and defined the ROS 2 stack from the motor control boards up to navigation, with long-term SLAM that kept localization stable across a 100 × 200 m site. Two robots went into production.">
+<meta name="author" content="ChanHui Jung">
+<link rel="canonical" href="https://ladianchad.github.io/ladianchad/projects/omni-farmer.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Omni Farmer case study · ChanHui Jung">
+<meta property="og:description" content="Metafarmers&#x27; multi-purpose farm robot. I led the robotics software team and defined the ROS 2 stack from the motor control boards up to navigation, with long-term SLAM that kept localization stable across a 100 × 200 m site. Two robots went into production.">
+<meta property="og:url" content="https://ladianchad.github.io/ladianchad/projects/omni-farmer.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1f4fd1;text-decoration:none}a:hover{color:#163a9c;text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181d; background: #ffffff; font-size: 17px; line-height: 1.7">
+
+  <header style="border-bottom: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="../index.html" style="color: #16181d; font-weight: 600; font-size: 15px">ChanHui Jung</a>
+      <nav aria-label="Site" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px">
+        <a href="../index.html" style="color: #4a4f5c">Home</a>
+        <a href="flody.html" style="color: #4a4f5c">Flody</a>
+        <a href="../cv.pdf" style="color: #1f4fd1; font-weight: 600">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <article style="max-width: 760px; margin: 0 auto; padding: 40px 32px 96px; display: flex; flex-direction: column; gap: 56px">
+
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <a href="../index.html#projects" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; color: #4a4f5c"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>All projects</a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1f4fd1">Case study · Metafarmers · 2025–2026</p>
+      <h1 style="margin: 0; font-size: 42px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">Omni Farmer: robots that harvest and pollinate strawberries</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: #2b2f38">Metafarmers' multi-purpose farm robot. I led the robotics software team and defined the ROS 2 stack from the motor control boards up to navigation, with long-term SLAM that kept localization stable across a 100 × 200 m site. Two robots went into production.</p>
+      <dl style="margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px 24px; padding: 20px 0; border-top: 1px solid #e6e8ec; border-bottom: 1px solid #e6e8ec">
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Role</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Robotics Software Team Lead</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Period</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">2025–2026</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Team</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">7 people</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Stack</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">ROS 2, Nav2, FAST-LIO, Cartographer</dd></div>
+      </dl>
+    </div>
+
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+      <img src="../assets/omni-farmer.jpg" alt="Omni Farmer, a white mobile base with two robot arms, beside shelves of strawberry plants" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #e6e8ec">
+      <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Omni Farmer with two arms, on display at AFPRO 2026 in Seoul. Photo: Sanup Ilbo.</figcaption>
+    </figure>
+
+    <section aria-labelledby="robots-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="robots-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The robots</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <b style="font-size: 16px; font-weight: 600">Strawberry harvesting</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Picks ripe strawberries and carries the harvest in refrigerated storage that holds 40 boxes.</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <b style="font-size: 16px; font-weight: 600">Strawberry pollination</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Pollinates flowers on the same platform. Metafarmers reports a pollination success rate at 80% of manual work after a year of field trials.</span>
+        </div>
+      </div>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+          <img src="../assets/omni-farmer-strawberry-arm.jpg" alt="A robot arm on a lift between rows of hanging strawberry beds, with a crate of picked strawberries" style="display: block; width: 100%; height: 280px; object-fit: cover; border-radius: 12px; border: 1px solid #e6e8ec">
+          <img src="../assets/omni-farmer-cucumber-arm.jpg" alt="A robot arm with a gripper reaching into cucumber vines" style="display: block; width: 100%; height: 280px; object-fit: cover; border-radius: 12px; border: 1px solid #e6e8ec">
+        </div>
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Left: the strawberry harvesting robot at the Dongtan farm. Right: Omni Farmer in a cucumber-harvesting trial at a customer's farm. Photos: Metafarmers, via Money Today and Asia Economy.</figcaption>
+      </figure>
+      <p style="margin: 0">Metafarmers reports Omni Farmer running at farms in Dongtan (Hwaseong), Sangju and Seosan. In November 2025 the cucumber-harvesting version finished KTL certification tests of harvest rate and speed.</p>
+    </section>
+
+    <section aria-labelledby="problem-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="problem-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The problem</h2>
+      <p style="margin: 0">The robots had to localize and navigate across a 100 × 200 m farm that has few stable features to anchor a map to.</p>
+      <p style="margin: 0">We first tried to localize with a single 3D LiDAR to keep the sensor set minimal. That was not reliable enough on this site, so the final system adds a 2D LiDAR and combines 3D LiDAR odometry with 2D mapping.</p>
+    </section>
+
+    <section aria-labelledby="approach-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="approach-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The approach</h2>
+      <p style="margin: 0">I defined the ROS 2 architecture from the motor control boards up to navigation. The stack, from top to bottom:</p>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; flex-direction: column; gap: 8px; padding: 16px; border-radius: 14px; background: #f7f8fa; border: 1px solid #e6e8ec">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">ROS 2</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 14px 16px; border-radius: 10px; background: #ffffff; border: 2px solid #1f4fd1"><b style="flex: 0 0 140px; font-size: 15px; font-weight: 600">Navigation</b><span style="flex: 1 1 260px; min-width: 0; font-size: 15px; line-height: 1.55; color: #2b2f38">Nav2</span></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 14px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #d6dae1"><b style="flex: 0 0 140px; font-size: 15px; font-weight: 600">Localization</b><span style="flex: 1 1 260px; min-width: 0; font-size: 15px; line-height: 1.55; color: #2b2f38">Long-term SLAM that fuses FAST-LIO odometry with Cartographer</span></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 14px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #d6dae1"><b style="flex: 0 0 140px; font-size: 15px; font-weight: 600">Sensors</b><span style="flex: 1 1 260px; min-width: 0; font-size: 15px; line-height: 1.55; color: #2b2f38">Unitree 4D LiDAR, 2D RPLIDAR</span></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; padding: 14px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #d6dae1"><b style="flex: 0 0 140px; font-size: 15px; font-weight: 600">Motor control</b><span style="flex: 1 1 260px; min-width: 0; font-size: 15px; line-height: 1.55; color: #2b2f38">UART protocol to the motor control boards</span></div>
+        </div>
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">The Omni Farmer software stack.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="results-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="results-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">Results</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 19px; border-radius: 12px; background: #ffffff; border: 2px solid #1f4fd1">
+          <span style="font-size: 36px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">2</span>
+          <span style="font-size: 15px; color: #4a4f5c">robots in production</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 20px; border-radius: 12px; background: #f7f8fa; border: 1px solid #e6e8ec">
+          <span style="font-size: 36px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">100 × 200 m</span>
+          <span style="font-size: 15px; color: #4a4f5c">farm with stable localization</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 20px; border-radius: 12px; background: #f7f8fa; border: 1px solid #e6e8ec">
+          <span style="font-size: 36px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">7</span>
+          <span style="font-size: 15px; color: #4a4f5c">engineers on the team I led</span>
+        </div>
+      </div>
+      <a href="https://metafarmers.ai" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 10px; border: 1px solid #cfd3da; color: #16181d; font-size: 15px; font-weight: 600; text-decoration: none">metafarmers.ai<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
+    </section>
+
+    <section aria-labelledby="role-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="role-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">My part</h2>
+      <p style="margin: 0">As Robotics Software Team Lead I built and led the seven-person Robotics AI team.</p>
+      <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px">
+        <li>Defined the ROS 2 architecture across embedded control, perception and navigation.</li>
+        <li>Designed the UART packet protocol and the embedded platform between the motor and sensor boards and ROS 2, with wheel-speed PID on the motor controllers.</li>
+        <li>Built perception: multi-object tracking, 3D reconstruction through colored voxelization, and long-term SLAM fusing FAST-LIO odometry with Cartographer.</li>
+        <li>Delivered autonomous navigation on Nav2 and moved task execution to a C++ behavior tree.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="press-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="press-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">Press</h2>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid #e6e8ec">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 170px; font-size: 14px; color: #5b6170">Sanup Ilbo<br>Jul 2026</span><a href="https://kidd.co.kr/news/246738" style="flex: 1 1 300px; display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 500; line-height: 1.5">"따고, 선별하고, 운반까지"… 메타파머스, 자율 농작업 솔루션 전시 (Korean)<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 170px; font-size: 14px; color: #5b6170">Money Today<br>May 2026</span><a href="https://www.mt.co.kr/future/2026/05/19/2026051814383749577" style="flex: 1 1 300px; display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 500; line-height: 1.5">메타파머스, '피지컬 AI'로 농업 혁명…'스마트농업 우수기업' 등 4연타 (Korean)<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 170px; font-size: 14px; color: #5b6170">Asia Economy<br>Nov 2025</span><a href="https://core.asiae.co.kr/article/2025112008261529044" style="flex: 1 1 300px; display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 500; line-height: 1.5">메타파머스, KTL 오이 수확률·속도 공인시험 평가 마무리 (Korean)<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+      </div>
+    </section>
+
+    <nav aria-label="More projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 32px; border-top: 1px solid #e6e8ec">
+      <a href="../index.html#projects" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Back</span><span style="font-size: 16px; font-weight: 600">All projects</span></a>
+      <a href="gwacheon-apple-robot.html" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Next project</span><span style="font-size: 16px; font-weight: 600">Apple-harvesting exhibit robot</span></a>
+    </nav>
+  </article>
+
+  <footer style="border-top: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #5b6170">
+      <span>ChanHui Jung · Ann Arbor, Michigan</span>
+      <span>Last updated Nov 2026</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

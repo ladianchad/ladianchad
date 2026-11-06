@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capstone rescue robot case study · ChanHui Jung</title>
+<meta name="description" content="Built for marine accidents. It raises the alarm, finds people in the water with RGB and thermal cameras, and until rescuers arrive it reports their position and helps keep them warm.">
+<meta name="author" content="ChanHui Jung">
+<link rel="canonical" href="https://ladianchad.github.io/ladianchad/projects/rescue-robot.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Capstone rescue robot case study · ChanHui Jung">
+<meta property="og:description" content="Built for marine accidents. It raises the alarm, finds people in the water with RGB and thermal cameras, and until rescuers arrive it reports their position and helps keep them warm.">
+<meta property="og:url" content="https://ladianchad.github.io/ladianchad/projects/rescue-robot.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1f4fd1;text-decoration:none}a:hover{color:#163a9c;text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181d; background: #ffffff; font-size: 17px; line-height: 1.7">
+
+  <header style="border-bottom: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="../index.html" style="color: #16181d; font-weight: 600; font-size: 15px">ChanHui Jung</a>
+      <nav aria-label="Site" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px">
+        <a href="../index.html" style="color: #4a4f5c">Home</a>
+        <a href="../index.html#projects" style="color: #4a4f5c">Projects</a>
+        <a href="../cv.pdf" style="color: #1f4fd1; font-weight: 600">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <article style="max-width: 760px; margin: 0 auto; padding: 40px 32px 96px; display: flex; flex-direction: column; gap: 56px">
+
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <a href="../index.html#projects" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; color: #4a4f5c"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>All projects</a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1f4fd1">Capstone design · Hanyang University ERICA · 2020–2022</p>
+      <h1 style="margin: 0; font-size: 42px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">Help: an unmanned rescue-assist robot for people in the water</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: #2b2f38">Built for marine accidents. It raises the alarm, finds people in the water with RGB and thermal cameras, and until rescuers arrive it reports their position and helps keep them warm.</p>
+      <dl style="margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px 24px; padding: 20px 0; border-top: 1px solid #e6e8ec; border-bottom: 1px solid #e6e8ec">
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Team</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">6 students</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Hardware</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Jetson Nano, Raspberry Pi 4, LoRa</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Stack</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">ROS, YOLOv5, TensorRT, Eigen, MariaDB</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Recognition</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Three awards, 2021–2022</dd></div>
+      </dl>
+    </div>
+
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+      <img src="../assets/rescue-robot-cad.jpg" alt="CAD render of a red U-shaped robot hull with its electronics bay open" style="display: block; width: 100%; height: auto; border-radius: 12px; background: #000000">
+      <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">CAD render of the hull with the electronics bay open.</figcaption>
+    </figure>
+
+    <section aria-labelledby="problem-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="problem-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The idea</h2>
+      <p style="margin: 0">After a marine accident, people in the water have to be found and kept safe until a rescue team arrives. Help raises the alarm when an accident happens, heads toward people in the water, and keeps reporting where they are.</p>
+    </section>
+
+    <section aria-labelledby="approach-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="approach-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">How it works</h2>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span>
+          <b style="font-size: 16px; font-weight: 600">Detect the accident</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">In normal operation the IMU tilt is compared with two thresholds. A large tilt sends a warning over LoRa; lying flat is treated as sinking and sends a rescue message with GPS position and time.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span>
+          <b style="font-size: 16px; font-weight: 600">Find people</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">The RGB camera gives bounding boxes; the thermal camera returns the center of a human-temperature region as the target. A Kalman filter tracks the target, and the left and right motors steer toward it.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span>
+          <b style="font-size: 16px; font-weight: 600">Stay and report</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">On reaching the person the robot makes an announcement and keeps sending its GPS position, which a server shows on a live map.</span>
+        </li>
+      </ol>
+
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 14px; background: #f7f8fa; border: 1px solid #e6e8ec">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">One robot</span>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+            <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 10px; background: #ffffff; border: 2px solid #1f4fd1">
+              <b style="font-size: 15px; font-weight: 600">Raspberry Pi 4</b>
+              <span style="font-size: 14px; line-height: 1.5; color: #4a4f5c">Reads the IMU, GPS and a single-point radar, keeps the robot state, and sends it over LoRa.</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #d6dae1">
+              <b style="font-size: 15px; font-weight: 600">Jetson Nano</b>
+              <span style="font-size: 14px; line-height: 1.5; color: #4a4f5c">Vision. Runs detection on the RGB and thermal cameras and returns the target pixel when the Raspberry Pi asks.</span>
+            </div>
+          </div>
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170; padding-top: 6px">Several robots</span>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px">
+            <span style="padding: 8px 12px; border-radius: 8px; background: #ffffff; border: 1px solid #d6dae1">Robot n</span>
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b6170" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+            <span style="padding: 8px 12px; border-radius: 8px; background: #ffffff; border: 1px solid #d6dae1">Robot n−1</span>
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b6170" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+            <span style="color: #5b6170">…</span>
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b6170" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+            <span style="padding: 8px 12px; border-radius: 8px; background: #ffffff; border: 1px solid #d6dae1">Robot 1</span>
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5b6170" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg>
+            <span style="padding: 8px 12px; border-radius: 8px; background: #ffffff; border: 2px solid #1f4fd1; font-weight: 600">Receiver</span>
+          </div>
+        </div>
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Inside one robot, and how several robots relay their states along a LoRa chain, each adding its own before passing it on.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="results-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="results-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">Recognition</h2>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid #e6e8ec">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 80px; font-size: 14px; color: #5b6170">2022</span><span style="flex: 1 1 300px; font-size: 15px">Special Prize, National Capstone Design Competition</span></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 80px; font-size: 14px; color: #5b6170">2021</span><span style="flex: 1 1 300px; font-size: 15px">Silver Award, Creative Engineering Design Competition</span></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 80px; font-size: 14px; color: #5b6170">2021</span><span style="flex: 1 1 300px; font-size: 15px">Grand Prize, CARE Innovation Idea Contest (GIG-Education Program)</span></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 80px; font-size: 14px; color: #5b6170">2021</span><span style="flex: 1 1 300px; font-size: 15px">Selected as a representative entry, capstone design exhibition of the Engineering Education Innovation Center</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="role-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="role-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">My part</h2>
+      <p style="margin: 0">On a team of six I worked on the system design, motor control, the data server, communication, sensor control, the algorithms and the electrical system.</p>
+    </section>
+
+    <nav aria-label="More projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 32px; border-top: 1px solid #e6e8ec">
+      <a href="item-assembly.html" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Previous project</span><span style="font-size: 16px; font-weight: 600">Item Assembly: stereo hole detection</span></a>
+      <a href="recycling-robot.html" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Next project</span><span style="font-size: 16px; font-weight: 600">Recycling and donation robot</span></a>
+    </nav>
+  </article>
+
+  <footer style="border-top: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #5b6170">
+      <span>ChanHui Jung · Ann Arbor, Michigan</span>
+      <span>Last updated Nov 2026</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

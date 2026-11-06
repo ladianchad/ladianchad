@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flody case study · ChanHui Jung</title>
+<meta name="description" content="Robots shared their poses and planned paths over a site-local bus and planned around each other. Fleet deadlocks went from 3–4 per hour to about one every two hours.">
+<meta name="author" content="ChanHui Jung">
+<link rel="canonical" href="https://ladianchad.github.io/ladianchad/projects/flody.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flody case study · ChanHui Jung">
+<meta property="og:description" content="Robots shared their poses and planned paths over a site-local bus and planned around each other. Fleet deadlocks went from 3–4 per hour to about one every two hours.">
+<meta property="og:url" content="https://ladianchad.github.io/ladianchad/projects/flody.html">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1f4fd1;text-decoration:none}a:hover{color:#163a9c;text-decoration:underline}
+</style>
+</head>
+<body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181d; background: #ffffff; font-size: 17px; line-height: 1.7">
+
+  <header style="border-bottom: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="../index.html" style="color: #16181d; font-weight: 600; font-size: 15px">ChanHui Jung</a>
+      <nav aria-label="Site" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px">
+        <a href="../index.html" style="color: #4a4f5c">Home</a>
+        <a href="omni-farmer.html" style="color: #4a4f5c">Omni Farmer</a>
+        <a href="../cv.pdf" style="color: #1f4fd1; font-weight: 600">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <article style="max-width: 760px; margin: 0 auto; padding: 40px 32px 96px; display: flex; flex-direction: column; gap: 56px">
+
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <a href="../index.html#projects" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 14px; font-weight: 500; color: #4a4f5c"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m11 18-6-6 6-6"></path></svg>All projects</a>
+      <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1f4fd1">Case study · Floatic · 2022–2024</p>
+      <h1 style="margin: 0; font-size: 42px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">Flody: keeping a warehouse fleet out of deadlock</h1>
+      <p style="margin: 0; font-size: 20px; line-height: 1.6; color: #2b2f38">Robots shared their poses and planned paths over a site-local bus and planned around each other. Fleet deadlocks went from 3–4 per hour to about one every two hours.</p>
+      <dl style="margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px 24px; padding: 20px 0; border-top: 1px solid #e6e8ec; border-bottom: 1px solid #e6e8ec">
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Role</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">Robotics Software and Platform Engineer</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Period</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">2022–2024</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Scale</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">10 robots, 3 sites</dd></div>
+        <div><dt style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Stack</dt><dd style="margin: 4px 0 0; font-size: 15px; line-height: 1.5">ROS 2, Nav2, Redis, Kafka, AWS IoT</dd></div>
+      </dl>
+    </div>
+
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+      <img src="../assets/flody.jpg" alt="A Floatic picking robot with shelves for totes, standing in a warehouse aisle" style="display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #e6e8ec">
+      <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">A Floatic warehouse robot. Image: Floatic, via The Robot Report.</figcaption>
+    </figure>
+
+    <section aria-labelledby="problem-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="problem-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The problem</h2>
+      <p style="margin: 0">Flody robots carried goods through narrow warehouse aisles. When several robots needed the same aisle they blocked each other, and the fleet deadlocked 3–4 times every hour.</p>
+      <p style="margin: 0">Before this work, a deadlock was cleared with an e-stop or by simple rule-based handling.</p>
+    </section>
+
+    <section aria-labelledby="approach-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="approach-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">The approach</h2>
+      <p style="margin: 0">Coordination was decentralized. Each robot shared its own state with the fleet and planned around its neighbors.</p>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span>
+          <b style="font-size: 16px; font-weight: 600">Share</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Each robot published its pose and planned path on a site-local Redis bus.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span>
+          <b style="font-size: 16px; font-weight: 600">Read neighbors</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Every robot read the poses and paths of the robots near it from the same bus.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa">
+          <span style="width: 28px; height: 28px; border-radius: 50%; background: #1f4fd1; color: #ffffff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span>
+          <b style="font-size: 16px; font-weight: 600">Plan around</b>
+          <span style="font-size: 15px; line-height: 1.55; color: #2b2f38">Nearby robots were added to each robot's own local costmap before it planned.</span>
+        </li>
+      </ol>
+      <figure style="margin: 0; display: flex; flex-direction: column; gap: 10px">
+        <div style="padding: 12px; border-radius: 12px; border: 1px solid #e6e8ec; background: #ffffff">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" style="display: block; width: 100%; height: auto" font-family="Inter, system-ui, sans-serif" role="img" aria-label="Diagram: each robot publishes its pose and planned path to a site-local Redis pub/sub bus and reads its neighbors back into a costmap layer that feeds its Nav2 planner.">
+    <defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5b6170"/></marker></defs>
+    <rect x="8" y="8" width="704" height="314" rx="16" fill="#f7f8fa" stroke="#e6e8ec"/>
+    <rect x="28" y="28" width="200" height="140" rx="12" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="128" y="54" text-anchor="middle" font-size="14" font-weight="600" fill="#16181d">Robot 1</text>
+    <rect x="44" y="68" width="168" height="30" rx="15" fill="#f1f3f6"/>
+    <text x="128" y="88" text-anchor="middle" font-size="12" fill="#2b2f38">Neighbor costmap layer</text>
+    <path d="M128 100V116" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="44" y="120" width="168" height="30" rx="15" fill="#f1f3f6"/>
+    <text x="128" y="140" text-anchor="middle" font-size="12" fill="#2b2f38">Nav2 planner</text>
+    <path d="M92 168V228" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <path d="M164 232V172" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <text x="84" y="204" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="#5b6170">pose, path</text>
+    <text x="172" y="204" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="#5b6170">neighbors</text>
+    <rect x="260" y="28" width="200" height="140" rx="12" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="360" y="54" text-anchor="middle" font-size="14" font-weight="600" fill="#16181d">Robot 2</text>
+    <rect x="276" y="68" width="168" height="30" rx="15" fill="#f1f3f6"/>
+    <text x="360" y="88" text-anchor="middle" font-size="12" fill="#2b2f38">Neighbor costmap layer</text>
+    <path d="M360 100V116" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="276" y="120" width="168" height="30" rx="15" fill="#f1f3f6"/>
+    <text x="360" y="140" text-anchor="middle" font-size="12" fill="#2b2f38">Nav2 planner</text>
+    <path d="M324 168V228" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <path d="M396 232V172" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <text x="316" y="204" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="#5b6170">pose, path</text>
+    <text x="404" y="204" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="#5b6170">neighbors</text>
+    <rect x="492" y="28" width="200" height="140" rx="12" fill="#ffffff" stroke="#c3c8d1"/>
+    <text x="592" y="54" text-anchor="middle" font-size="14" font-weight="600" fill="#16181d">Robot n</text>
+    <rect x="508" y="68" width="168" height="30" rx="15" fill="#f1f3f6"/>
+    <text x="592" y="88" text-anchor="middle" font-size="12" fill="#2b2f38">Neighbor costmap layer</text>
+    <path d="M592 100V116" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <rect x="508" y="120" width="168" height="30" rx="15" fill="#f1f3f6"/>
+    <text x="592" y="140" text-anchor="middle" font-size="12" fill="#2b2f38">Nav2 planner</text>
+    <path d="M556 168V228" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <path d="M628 232V172" fill="none" stroke="#8a909c" stroke-width="1.5" marker-end="url(#fa)"/>
+    <text x="548" y="204" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="#5b6170">pose, path</text>
+    <text x="636" y="204" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="10" fill="#5b6170">neighbors</text>
+    <rect x="28" y="232" width="664" height="44" rx="22" fill="#ffffff" stroke="#1f4fd1" stroke-width="2"/>
+    <text x="360" y="259" text-anchor="middle" font-size="14" font-weight="600" fill="#1f4fd1">Site-local Redis pub/sub</text>
+    <text x="28" y="306" font-size="11" font-weight="600" letter-spacing="0.08em" fill="#8a909c">ONE WAREHOUSE SITE</text>
+  </svg>
+        </div>
+        <figcaption style="font-size: 13px; line-height: 1.5; color: #5b6170">Each robot publishes its own pose and planned path to a Redis bus that only runs inside the site, and reads its neighbors back into a costmap layer. Nav2 then plans around them, with no central planner in the loop.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="results-h" style="display: flex; flex-direction: column; gap: 20px">
+      <h2 id="results-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">Results</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 20px; border-radius: 12px; background: #f7f8fa; border: 1px solid #e6e8ec">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Before</span>
+          <span style="font-size: 36px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">3–4 per hour</span>
+          <span style="font-size: 15px; color: #4a4f5c">fleet deadlocks</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 19px; border-radius: 12px; background: #ffffff; border: 2px solid #1f4fd1">
+          <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1f4fd1">After</span>
+          <span style="font-size: 36px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em">~1 per 2 hours</span>
+          <span style="font-size: 15px; color: #4a4f5c">fleet deadlocks</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-top: 1px solid #e6e8ec"><span style="font-size: 24px; font-weight: 700">10</span><span style="font-size: 14px; color: #5b6170">robots in the fleet</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-top: 1px solid #e6e8ec"><span style="font-size: 24px; font-weight: 700">300+</span><span style="font-size: 14px; color: #5b6170">hours of operation</span></div>
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 14px 0; border-top: 1px solid #e6e8ec"><span style="font-size: 24px; font-weight: 700">3</span><span style="font-size: 14px; color: #5b6170">warehouse sites</span></div>
+      </div>
+      <a href="https://www.youtube.com/watch?v=0acR1xwGQf8" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 18px; border-radius: 10px; background: #1f4fd1; color: #ffffff; font-size: 15px; font-weight: 600; text-decoration: none"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5v14l12-7z"></path></svg>Watch the demo video</a>
+    </section>
+
+    <section aria-labelledby="role-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="role-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">My part</h2>
+      <p style="margin: 0">At Floatic I built the navigation stack and middleware for the warehouse fleet.</p>
+      <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px">
+        <li>A DDS-style middleware layer that put robot–backend communication behind one interface, so Kafka and AWS IoT could be swapped without touching robot software.</li>
+        <li>Multi-robot navigation on ROS 2 Nav2: cost functions for custom costmap layers, a Kalman filter correcting wheel odometry, and planner and controller tuning for dense warehouse aisles.</li>
+        <li>Behavior-tree task execution backed by an edge database server that tracked the tasks allocated to each robot.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="press-h" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 id="press-h" style="margin: 0; font-size: 26px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em">Press</h2>
+      <p style="margin: 0">Coverage of Floatic and its warehouse robot.</p>
+      <div style="display: flex; flex-direction: column; border-top: 1px solid #e6e8ec">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 170px; font-size: 14px; color: #5b6170">The Robot Report<br>Jun 2024</span><a href="https://www.therobotreport.com/floatic-raises-38m-for-amrs-to-tackle-e-commerce-picking/" style="flex: 1 1 300px; display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 500; line-height: 1.5">Floatic raises $3.8M for AMRs to tackle e-commerce picking<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 170px; font-size: 14px; color: #5b6170">Automated Warehouse<br>Nov 2024</span><a href="https://www.automatedwarehouseonline.com/logisall-doubles-productivity-in-trial-with-floatic/" style="flex: 1 1 300px; display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 500; line-height: 1.5">LogisALL doubles productivity in trial with Floatic picking robots<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 170px; font-size: 14px; color: #5b6170">Red Dot Design Award<br>2024, Design Concept</span><a href="https://www.red-dot.org/project/flody-warehouse-amr-72086" style="flex: 1 1 300px; display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 500; line-height: 1.5">Flody: Warehouse AMR<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 24px; padding: 12px 0; border-bottom: 1px solid #e6e8ec"><span style="flex: 0 0 170px; font-size: 14px; color: #5b6170">KED Global<br>Jul 2022</span><a href="https://www.kedglobal.com/newsView/ked202207210011" style="flex: 1 1 300px; display: inline-flex; align-items: baseline; gap: 6px; font-size: 15px; font-weight: 500; line-height: 1.5">Warehouse robotics maker Floatic raises $2.6 million in pre-Series A<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="next-h" style="display: flex; flex-direction: column; gap: 16px; padding: 24px; border-radius: 12px; background: #f7f8fa; border: 1px solid #e6e8ec">
+      <h2 id="next-h" style="margin: 0; font-size: 20px; line-height: 1.3; font-weight: 700">What it led to</h2>
+      <p style="margin: 0; font-size: 16px">Flody gave me a concrete version of the problem I now study: multi-agent path finding when many robots crowd into the same space. My two JKSPE papers look at MAPF in congested environments and continuous-time conflict-based search.</p>
+      <a href="../index.html#publications" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 600">See publications on the home page</a>
+    </section>
+
+    <nav aria-label="More projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-top: 32px; border-top: 1px solid #e6e8ec">
+      <a href="gwacheon-apple-robot.html" style="display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Previous project</span><span style="font-size: 16px; font-weight: 600">Apple-harvesting exhibit robot</span></a>
+      <a href="churo.html" style="display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 4px; padding: 16px 18px; border: 1px solid #e6e8ec; border-radius: 12px; color: #16181d; text-decoration: none"><span style="font-size: 13px; color: #5b6170">Next project</span><span style="font-size: 16px; font-weight: 600">Churo: dog behavior recognition</span></a>
+    </nav>
+  </article>
+
+  <footer style="border-top: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 24px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #5b6170">
+      <span>ChanHui Jung · Ann Arbor, Michigan</span>
+      <span>Last updated Nov 2026</span>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,979 +1,280 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ChanHui Jung — Robotics Software Engineer</title>
-<meta name="description" content="ChanHui Jung (정찬희) — Robotics Software Engineer specializing in multi-robot navigation, Multi-Agent Path Finding (MAPF) and fleet autonomy. Robotics AI Team Lead at Metafarmers; formerly Floatic.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChanHui Jung</title>
+<meta name="description" content="I am an M.S. student in Robotics at the University of Michigan. I work on multi-robot navigation and multi-agent path finding, with a focus on crowded spaces where robots keep blocking each other.">
 <meta name="author" content="ChanHui Jung">
-<meta name="keywords" content="Robotics, ROS2, Nav2, Multi-Agent Path Finding, MAPF, Fleet Management, AMR, SLAM, Autonomous Navigation, Robotics Engineer, Seoul">
-<meta name="theme-color" content="#05080f">
-<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="canonical" href="https://ladianchad.github.io/ladianchad/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="ChanHui Jung — Robotics Software Engineer">
-<meta property="og:description" content="Multi-robot navigation, MAPF & fleet autonomy for real-world robot fleets — from smart farms to logistics warehouses.">
-<meta property="og:image" content="https://avatars.githubusercontent.com/u/60467877?v=4">
+<meta property="og:title" content="ChanHui Jung">
+<meta property="og:description" content="I am an M.S. student in Robotics at the University of Michigan. I work on multi-robot navigation and multi-agent path finding, with a focus on crowded spaces where robots keep blocking each other.">
 <meta property="og:url" content="https://ladianchad.github.io/ladianchad/">
-<meta property="og:site_name" content="ChanHui Jung">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ChanHui Jung — Robotics Software Engineer">
-<meta name="twitter:description" content="Multi-robot navigation, MAPF & fleet autonomy for real-world robot fleets.">
-<meta name="twitter:image" content="https://avatars.githubusercontent.com/u/60467877?v=4">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
 <style>
-  :root{
-    --bg:#05080f;
-    --bg-2:#070b16;
-    --panel:#0a1020;
-    --panel-2:#0c1424;
-    --line:#16233d;
-    --line-soft:#101a2e;
-    --grid:rgba(34,211,238,0.045);
-    --grid-strong:rgba(34,211,238,0.09);
-    --cyan:#22d3ee;
-    --cyan-dim:#0e7490;
-    --amber:#f5a623;
-    --magenta:#e879f9;
-    --green:#4ade80;
-    --txt:#e6edf6;
-    --txt-2:#9fb0c6;
-    --txt-3:#6b7e98;
-    --txt-faint:#4a5b73;
-    --mono:'SF Mono','JetBrains Mono',Menlo,Consolas,monospace;
-    --sans:-apple-system,'Helvetica Neue','Segoe UI',system-ui,sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{
-    background:var(--bg);
-    -webkit-font-smoothing:antialiased;
-    text-rendering:optimizeLegibility;
-    scroll-behavior:smooth;
-    scroll-padding-top:70px;
-  }
-  body{
-    font-family:var(--sans);
-    color:var(--txt);
-    line-height:1.6;
-    background:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
-      radial-gradient(ellipse 90% 50% at 50% -8%, rgba(34,211,238,0.08), transparent 60%),
-      var(--bg);
-    background-size:42px 42px, 42px 42px, 100% 100%, 100% 100%;
-    overflow-x:hidden;
-  }
-  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
-  a{color:inherit;text-decoration:none;}
-
-  .tag{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--cyan);}
-  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:42px;border-bottom:1px solid var(--line);padding-bottom:16px;}
-  .sec-head .idx{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--cyan);white-space:nowrap;}
-  .sec-head h2{font-family:var(--mono);font-size:15px;font-weight:600;letter-spacing:0.18em;color:var(--txt-2);text-transform:uppercase;}
-  .sec-head h2 b{color:var(--txt);font-weight:700;}
-  .sec-head .meta{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;color:var(--txt-faint);text-transform:uppercase;white-space:nowrap;}
-  section{padding:96px 0;position:relative;}
-  .divscan{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);}
-
-  /* ============ TOP BAR ============ */
-  .topbar{position:sticky;top:0;z-index:100;border-bottom:1px solid var(--line-soft);background:rgba(5,8,15,0.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
-  .topbar .wrap{display:flex;align-items:center;height:58px;gap:20px;}
-  .brand{display:flex;align-items:center;gap:11px;font-family:var(--mono);font-size:12.5px;letter-spacing:0.14em;color:var(--txt);}
-  .brand .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);}
-  .topnav{margin-left:auto;display:flex;gap:26px;}
-  .topnav a{font-family:var(--mono);font-size:11px;letter-spacing:0.16em;color:var(--txt-3);text-transform:uppercase;transition:color .2s;}
-  .topnav a:hover{color:var(--cyan);}
-  .topnav a.active{color:var(--cyan);}
-  a.pr{transition:border-color .2s,color .2s;}
-  a.pr:hover{border-color:var(--cyan);color:var(--cyan);}
-  .topstatus{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;color:var(--green);text-transform:uppercase;}
-  .topstatus .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2.4s infinite;}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-
-  /* ============ HERO ============ */
-  .hero{padding:70px 0 70px;position:relative;}
-  .hero-grid{display:grid;grid-template-columns:0.92fr 1.08fr;gap:54px;align-items:center;}
-  .hero-id .eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
-  .hero-id .eyebrow .tk{font-family:var(--mono);font-size:11px;letter-spacing:0.22em;color:var(--amber);text-transform:uppercase;}
-  .hero-id .eyebrow .rule{flex:1;height:1px;background:var(--line);}
-  .hero h1{font-size:60px;line-height:1.02;font-weight:800;letter-spacing:-0.02em;color:var(--txt);margin-bottom:6px;}
-  .hero h1 .ko{display:block;font-size:20px;font-weight:600;letter-spacing:0.04em;color:var(--txt-3);margin-top:14px;font-family:var(--mono);}
-  .hero .role{font-family:var(--mono);font-size:13px;letter-spacing:0.06em;color:var(--cyan);margin:22px 0 0;}
-  .hero .role .sep{color:var(--txt-faint);margin:0 9px;}
-  .hero .tagline{font-size:25px;line-height:1.32;font-weight:600;color:var(--txt);margin:26px 0 14px;letter-spacing:-0.01em;}
-  .hero .tagline .hl{color:var(--cyan);}
-  .hero .sub{font-size:15px;color:var(--txt-2);max-width:480px;margin-bottom:30px;}
-  .hero-links{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:8px;}
-  .hlink{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:0.05em;color:var(--txt-2);border:1px solid var(--line);padding:9px 14px;border-radius:4px;background:rgba(10,16,32,0.5);transition:border-color .2s,color .2s,background .2s;}
-  .hlink svg{width:14px;height:14px;flex:none;}
-  .hlink:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(34,211,238,0.06);}
-
-  .hud{position:relative;background:linear-gradient(var(--grid-strong) 1px, transparent 1px),linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px),radial-gradient(ellipse 70% 60% at 50% 40%, rgba(34,211,238,0.06), transparent 70%),var(--bg-2);background-size:30px 30px,30px 30px,100% 100%,100% 100%;border:1px solid var(--line);border-radius:6px;padding:18px;box-shadow:0 0 0 1px rgba(34,211,238,0.04) inset, 0 40px 90px -40px rgba(0,0,0,0.8);overflow:hidden;}
-  .hud-bar{display:flex;align-items:center;gap:10px;margin-bottom:14px;font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--txt-3);text-transform:uppercase;}
-  .hud-bar .lbl-c{color:var(--cyan);}
-  .hud-bar .lbl-a{color:var(--amber);margin-left:auto;}
-  .corner{position:absolute;width:14px;height:14px;border-color:var(--cyan);opacity:.65;z-index:3;}
-  .corner.tl{top:8px;left:8px;border-top:1.5px solid;border-left:1.5px solid;}
-  .corner.tr{top:8px;right:8px;border-top:1.5px solid;border-right:1.5px solid;}
-  .corner.bl{bottom:8px;left:8px;border-bottom:1.5px solid;border-left:1.5px solid;}
-  .corner.br{bottom:8px;right:8px;border-bottom:1.5px solid;border-right:1.5px solid;}
-  .hud svg.fleet{display:block;width:100%;height:auto;position:relative;z-index:1;}
-  .scanline{position:absolute;left:18px;right:18px;top:60px;height:64px;pointer-events:none;z-index:2;background:linear-gradient(180deg,rgba(34,211,238,0.10),transparent);border-top:1px solid rgba(34,211,238,0.25);animation:scan 6s linear infinite;border-radius:4px;}
-  @keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(300px)}}
-  .hud-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;padding-top:13px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--txt-3);text-transform:uppercase;}
-  .hud-legend span{display:inline-flex;align-items:center;gap:7px;}
-  .hud-legend i{width:14px;height:2.5px;border-radius:2px;display:inline-block;}
-
-  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:54px;}
-  .tile{position:relative;border:1px solid var(--line);background:linear-gradient(180deg,rgba(12,20,36,0.7),rgba(8,12,22,0.7));padding:20px 18px 16px;border-radius:5px;overflow:hidden;}
-  .tile::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--cyan),transparent);opacity:.5;}
-  .tile .tc{position:absolute;width:9px;height:9px;border-color:var(--cyan);opacity:.5;}
-  .tile .tc.a{top:7px;right:7px;border-top:1px solid;border-right:1px solid;}
-  .tile .tc.b{bottom:7px;left:7px;border-bottom:1px solid;border-left:1px solid;}
-  .tile .num{font-family:var(--mono);font-size:33px;font-weight:700;color:var(--txt);letter-spacing:-0.01em;line-height:1;}
-  .tile .num .u{font-size:17px;color:var(--cyan);font-weight:600;}
-  .tile.amber .num .u{color:var(--amber);}
-  .tile.amber::before{background:linear-gradient(90deg,var(--amber),transparent);}
-  .tile.amber .tc{border-color:var(--amber);}
-  .tile .lab{font-family:var(--mono);font-size:10px;letter-spacing:0.14em;color:var(--txt-3);text-transform:uppercase;margin-top:12px;}
-  .tile .sublab{font-family:var(--mono);font-size:9px;letter-spacing:0.1em;color:var(--txt-faint);text-transform:uppercase;margin-top:3px;}
-
-  /* ============ ABOUT ============ */
-  .about-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:start;}
-  .about-lead{font-size:21px;line-height:1.55;color:var(--txt);font-weight:500;letter-spacing:-0.01em;margin-bottom:22px;}
-  .about-lead .hl{color:var(--cyan);}
-  .about-body p{font-size:15px;color:var(--txt-2);margin-bottom:16px;}
-  .about-body p .em{color:var(--txt);font-weight:600;}
-  .focus-card{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:24px;}
-  .focus-card .fc-head{font-family:var(--mono);font-size:10.5px;letter-spacing:0.16em;color:var(--amber);text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
-  .focus-row{display:flex;gap:14px;padding:14px 0;border-top:1px solid var(--line-soft);}
-  .focus-row:first-of-type{border-top:none;padding-top:0;}
-  .focus-row .ic{flex:none;width:34px;height:34px;border:1px solid var(--line);border-radius:5px;display:flex;align-items:center;justify-content:center;background:rgba(34,211,238,0.04);}
-  .focus-row .ic svg{width:18px;height:18px;}
-  .focus-row h4{font-size:14.5px;font-weight:600;color:var(--txt);margin-bottom:3px;}
-  .focus-row p{font-size:12.5px;color:var(--txt-3);line-height:1.5;}
-
-  /* ============ EXPERIENCE ============ */
-  .xp{display:flex;flex-direction:column;gap:26px;}
-  .xp-card{position:relative;border:1px solid var(--line);border-radius:7px;background:linear-gradient(180deg,var(--panel-2),var(--panel));overflow:hidden;}
-  .xp-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cyan);}
-  .xp-card.amber::before{background:var(--amber);}
-  .xp-top{display:grid;grid-template-columns:1fr auto;gap:18px;padding:26px 30px 22px;border-bottom:1px solid var(--line-soft);align-items:start;}
-  .xp-co{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
-  .xp-logo{width:42px;height:42px;border:1px solid var(--line);border-radius:7px;display:flex;align-items:center;justify-content:center;background:var(--bg-2);flex:none;}
-  .xp-logo svg{width:24px;height:24px;}
-  .xp-co h3{font-size:20px;font-weight:700;color:var(--txt);letter-spacing:-0.01em;}
-  .xp-co .badge{font-family:var(--mono);font-size:9.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--line);padding:3px 8px;border-radius:3px;}
-  .xp-co .badge.amber{color:var(--amber);}
-  .xp-role{font-family:var(--mono);font-size:13px;color:var(--txt-2);letter-spacing:0.02em;}
-  .xp-role .domain{color:var(--txt-faint);}
-  .xp-when{text-align:right;font-family:var(--mono);font-size:11px;letter-spacing:0.08em;color:var(--txt-3);white-space:nowrap;}
-  .xp-when .loc{display:block;color:var(--txt-faint);margin-top:5px;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;}
-  .xp-body{display:grid;grid-template-columns:1.4fr 1fr;gap:0;}
-  .xp-bullets{padding:24px 30px;border-right:1px solid var(--line-soft);}
-  .xp-bullets li{list-style:none;position:relative;padding-left:22px;font-size:14px;color:var(--txt-2);margin-bottom:13px;line-height:1.55;}
-  .xp-bullets li:last-child{margin-bottom:0;}
-  .xp-bullets li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border:1.5px solid var(--cyan);border-radius:2px;transform:rotate(45deg);}
-  .xp-card.amber .xp-bullets li::before{border-color:var(--amber);}
-  .xp-bullets li .em{color:var(--txt);font-weight:600;}
-  .flagship{padding:24px 28px;background:rgba(34,211,238,0.025);}
-  .xp-card.amber .flagship{background:rgba(245,166,35,0.03);}
-  .flagship .fl-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;display:flex;align-items:center;gap:7px;}
-  .xp-card.amber .flagship .fl-tag{color:var(--amber);}
-  .flagship h5{font-size:16px;font-weight:700;color:var(--txt);margin-bottom:8px;}
-  .flagship p{font-size:12.5px;color:var(--txt-3);line-height:1.55;margin-bottom:14px;}
-  .fl-stats{display:flex;flex-wrap:wrap;gap:8px;}
-  .fl-chip{font-family:var(--mono);font-size:10px;letter-spacing:0.04em;color:var(--txt);border:1px solid var(--line);border-radius:3px;padding:5px 8px;background:var(--bg-2);}
-  .fl-chip b{color:var(--cyan);font-weight:700;}
-  .xp-card.amber .fl-chip b{color:var(--amber);}
-  .fl-demo{display:inline-flex;align-items:center;gap:7px;margin-top:13px;font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;color:var(--cyan);text-transform:uppercase;border:1px solid var(--line);padding:6px 11px;border-radius:4px;transition:border-color .2s;}
-  .fl-demo svg{width:13px;height:13px;}
-  .fl-demo:hover{border-color:var(--cyan);}
-
-  /* ============ PROJECTS ============ */
-  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  .pcard{position:relative;border:1px solid var(--line);border-radius:7px;background:var(--panel);padding:22px;display:flex;flex-direction:column;min-height:228px;overflow:hidden;transition:border-color .22s,transform .22s;}
-  .pcard:hover{border-color:var(--cyan);transform:translateY(-3px);}
-  .pcard .pc-corner{position:absolute;top:10px;right:10px;width:11px;height:11px;border-top:1px solid var(--line);border-right:1px solid var(--line);}
-  .pc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
-  .pc-ic{width:40px;height:40px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--bg-2);}
-  .pc-ic svg{width:22px;height:22px;}
-  .pc-kind{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--txt-faint);border:1px solid var(--line-soft);padding:4px 7px;border-radius:3px;}
-  .pcard h4{font-size:17px;font-weight:700;color:var(--txt);margin-bottom:7px;letter-spacing:-0.01em;}
-  .pcard h4 .star{color:var(--amber);font-size:13px;font-weight:600;margin-left:5px;}
-  .pcard p{font-size:13px;color:var(--txt-2);line-height:1.5;flex:1;}
-  .pc-foot{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;}
-  .pc-foot .t{font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;color:var(--cyan);text-transform:uppercase;}
-  .pc-foot .t::before{content:"#";color:var(--cyan-dim);}
-  .pc-link{margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:0.08em;color:var(--txt-3);display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;}
-  .pc-link svg{width:12px;height:12px;}
-  .pcard:hover .pc-link{color:var(--cyan);}
-
-  /* ============ RESEARCH / OSS ============ */
-  .res-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
-  .panel{border:1px solid var(--line);border-radius:7px;background:var(--panel);overflow:hidden;}
-  .panel-head{padding:16px 22px;border-bottom:1px solid var(--line-soft);display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--txt-2);}
-  .panel-head svg{width:16px;height:16px;}
-  .panel-head .c-cyan{color:var(--cyan);}
-  .panel-head .c-amber{color:var(--amber);}
-  .panel-body{padding:22px;}
-  .res-lab{display:flex;gap:14px;margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--line-soft);}
-  .res-lab .yr{font-family:var(--mono);font-size:10.5px;color:var(--amber);letter-spacing:0.06em;flex:none;padding-top:2px;width:74px;}
-  .res-lab h4{font-size:15px;font-weight:600;color:var(--txt);margin-bottom:3px;}
-  .res-lab p{font-size:12.5px;color:var(--txt-3);line-height:1.5;}
-  .pub{padding:14px 0;border-top:1px solid var(--line-soft);}
-  .pub:first-child{border-top:none;padding-top:0;}
-  .pub .pmeta{font-family:var(--mono);font-size:9.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--txt-faint);margin-bottom:6px;display:flex;gap:8px;align-items:center;}
-  .pub .pmeta .st{color:var(--amber);}
-  .pub h5{font-size:13.5px;font-weight:600;color:var(--txt);line-height:1.45;}
-  .oss-item{display:flex;gap:13px;padding:14px 0;border-top:1px solid var(--line-soft);align-items:flex-start;}
-  .oss-item:first-child{border-top:none;padding-top:0;}
-  .oss-item .pr{font-family:var(--mono);font-size:10px;color:var(--cyan);border:1px solid var(--line);border-radius:3px;padding:4px 7px;flex:none;background:var(--bg-2);letter-spacing:0.04em;}
-  .oss-item h5{font-size:13.5px;font-weight:600;color:var(--txt);margin-bottom:2px;}
-  .oss-item p{font-size:12px;color:var(--txt-3);line-height:1.5;}
-  .oss-intro{font-size:13px;color:var(--txt-2);margin-bottom:18px;line-height:1.55;}
-  .oss-intro b{color:var(--txt);}
-
-  /* ============ SKILLS ============ */
-  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
-  .skill-block{border:1px solid var(--line);border-radius:6px;background:var(--panel);padding:20px 22px;}
-  .skill-block .sb-head{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:9px;}
-  .skill-block .sb-head svg{width:15px;height:15px;}
-  .skill-block .sb-head .n{margin-left:auto;color:var(--txt-faint);font-size:9.5px;}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;}
-  .chip{font-family:var(--mono);font-size:11.5px;letter-spacing:0.02em;color:var(--txt-2);border:1px solid var(--line);border-radius:4px;padding:6px 11px;background:var(--bg-2);transition:border-color .2s,color .2s;}
-  .chip:hover{border-color:var(--cyan);color:var(--cyan);}
-  .chip.key{color:var(--txt);border-color:var(--cyan-dim);}
-
-  /* ============ AWARDS / EDU ============ */
-  .aw-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
-  .aw-list{display:flex;flex-direction:column;}
-  .aw-row{display:flex;align-items:center;gap:16px;padding:16px 0;border-top:1px solid var(--line-soft);}
-  .aw-row:first-child{border-top:none;padding-top:0;}
-  .aw-medal{width:38px;height:38px;flex:none;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;background:var(--bg-2);}
-  .aw-medal svg{width:20px;height:20px;}
-  .aw-row .info h4{font-size:14.5px;font-weight:600;color:var(--txt);}
-  .aw-row .info p{font-size:11.5px;color:var(--txt-3);font-family:var(--mono);letter-spacing:0.04em;margin-top:2px;}
-  .aw-row .yr{margin-left:auto;font-family:var(--mono);font-size:13px;color:var(--amber);font-weight:600;}
-  .edu-card{border:1px solid var(--line);border-radius:7px;background:var(--panel);padding:26px;}
-  .edu-card .ec-deg{font-size:18px;font-weight:700;color:var(--txt);margin-bottom:4px;}
-  .edu-card .ec-uni{font-family:var(--mono);font-size:12.5px;color:var(--cyan);letter-spacing:0.04em;margin-bottom:18px;}
-  .edu-card .ec-when{font-family:var(--mono);font-size:11px;color:var(--txt-3);letter-spacing:0.06em;}
-  .gpa-row{display:flex;gap:14px;margin:18px 0;}
-  .gpa{flex:1;border:1px solid var(--line);border-radius:5px;padding:14px;text-align:center;background:var(--bg-2);}
-  .gpa .v{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--txt);}
-  .gpa .v .max{font-size:12px;color:var(--txt-faint);}
-  .gpa .l{font-family:var(--mono);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--txt-faint);margin-top:6px;}
-  .gpa.hl .v{color:var(--cyan);}
-  .ec-cap{font-size:12.5px;color:var(--txt-3);border-top:1px solid var(--line-soft);padding-top:16px;}
-  .ec-cap b{font-family:var(--mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:5px;color:var(--amber);}
-
-  /* ============ CONTACT FOOTER ============ */
-  .footer{padding:90px 0 50px;border-top:1px solid var(--line);position:relative;background:linear-gradient(180deg,transparent,rgba(34,211,238,0.025));}
-  .foot-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;}
-  .foot-id .ftag{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--cyan);text-transform:uppercase;margin-bottom:18px;}
-  .foot-id h2{font-size:40px;font-weight:800;letter-spacing:-0.02em;color:var(--txt);line-height:1.1;margin-bottom:14px;}
-  .foot-id h2 .hl{color:var(--cyan);}
-  .foot-id p{font-size:15px;color:var(--txt-2);max-width:440px;}
-  .foot-links{display:flex;flex-direction:column;gap:10px;min-width:300px;}
-  .foot-link{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:5px;padding:12px 16px;background:rgba(10,16,32,0.5);font-family:var(--mono);font-size:12px;letter-spacing:0.03em;color:var(--txt-2);transition:border-color .2s,color .2s;}
-  .foot-link svg{width:16px;height:16px;flex:none;color:var(--cyan);}
-  .foot-link .k{color:var(--txt-faint);text-transform:uppercase;font-size:9.5px;letter-spacing:0.14em;width:58px;flex:none;}
-  .foot-link:hover{border-color:var(--cyan);color:var(--txt);}
-  .foot-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:64px;padding-top:24px;border-top:1px solid var(--line-soft);font-family:var(--mono);font-size:10.5px;letter-spacing:0.1em;color:var(--txt-faint);text-transform:uppercase;}
-  .foot-bottom .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);display:inline-block;margin-right:8px;vertical-align:middle;}
-
-  @media (max-width:980px){
-    .hero-grid,.about-grid,.res-grid,.skills-grid,.aw-grid,.foot-grid{grid-template-columns:1fr;}
-    .proj-grid{grid-template-columns:repeat(2,1fr);}
-    .metrics{grid-template-columns:repeat(2,1fr);}
-    .xp-body{grid-template-columns:1fr;}
-    .xp-bullets{border-right:none;border-bottom:1px solid var(--line-soft);}
-  }
-
-  @media (max-width:820px){
-    .wrap{padding:0 22px;}
-    section{padding:64px 0;}
-    .hero{padding:40px 0 30px;}
-    .hero h1{font-size:clamp(40px,11vw,56px);}
-    .metrics{margin-top:36px;gap:12px;}
-    .sec-head{flex-wrap:wrap;gap:10px;}
-    .sec-head .meta{margin-left:0;flex-basis:100%;}
-    .foot-grid{grid-template-columns:1fr;}
-    .foot-links{min-width:0;width:100%;}
-    .foot-bottom{flex-direction:column;gap:10px;align-items:flex-start;}
-    .foot-id h2{font-size:32px;}
-  }
-  @media (max-width:760px){
-    .topbar .wrap{height:54px;gap:12px;}
-    .brand{font-size:11px;letter-spacing:0.08em;flex:none;}
-    .brand .dot{width:7px;height:7px;}
-    .topnav{margin-left:auto;gap:16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 16px,#000 92%,transparent);}
-    .topnav::-webkit-scrollbar{display:none;}
-    .topnav a{white-space:nowrap;font-size:10.5px;letter-spacing:0.1em;}
-    .topstatus{display:none;}
-  }
-  @media (max-width:600px){
-    .wrap{padding:0 16px;}
-    .hero-grid,.about-grid,.res-grid,.aw-grid{gap:32px;}
-    .proj-grid{grid-template-columns:1fr;}
-    .metrics{grid-template-columns:1fr 1fr;}
-    .hero h1{font-size:clamp(34px,12vw,48px);}
-    .hero .tagline{font-size:21px;}
-    .xp-top{grid-template-columns:1fr;}
-    .xp-when{text-align:left;}
-    .xp-bullets,.flagship{padding:20px;}
-    .gpa-row{flex-direction:column;}
-    .hero-links{gap:8px;}
-    .hlink{font-size:10.5px;padding:8px 11px;}
-  }
-  @media (prefers-reduced-motion:reduce){
-    *{animation:none !important;scroll-behavior:auto !important;}
-  }
-
-  /* MAPF HUD가 좁은 화면에서 깨지지 않게: 긴 mono 라벨이 grid 트랙을 뷰포트보다 넓게 밀어 클리핑되던 문제 차단 */
-  .hero-id,.hud{min-width:0;}
-  .hud-bar{flex-wrap:wrap;}
-  .hud svg.fleet{max-width:100%;}
-  @media (max-width:520px){
-    .hud-bar{gap:5px 10px;font-size:9px;letter-spacing:0.1em;}
-    .hud-bar .lbl-a{margin-left:0;flex-basis:100%;}
-    .hud{padding:14px;}
-    .hud-legend{gap:8px 12px;font-size:9px;}
-    .hud-legend span[style]{margin-left:0 !important;}
-  }
+body{margin:0;background:#ffffff}
+a{color:#1f4fd1;text-decoration:none}a:hover{color:#163a9c;text-decoration:underline}
 </style>
 </head>
 <body>
+<div style="font-family: Inter, system-ui, sans-serif; color: #16181d; background: #ffffff; font-size: 15px; line-height: 1.6">
 
-<!-- ============ TOP BAR ============ -->
-<div class="topbar">
-  <div class="wrap">
-    <div class="brand"><span class="dot"></span>C.JUNG&nbsp;<span style="color:var(--txt-faint)">// FLEET&nbsp;OPS</span></div>
-    <nav class="topnav">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#research">Research</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="topstatus"><span class="pulse"></span>Available</div>
+  <header style="border-bottom: 1px solid #e6e8ec">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 18px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+      <a href="#top" style="color: #16181d; font-weight: 600; font-size: 15px">ChanHui Jung</a>
+      <nav aria-label="Sections" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 14px">
+        <a href="#experience" style="color: #4a4f5c">Experience</a>
+        <a href="#education" style="color: #4a4f5c">Education</a>
+        <a href="#research" style="color: #4a4f5c">Research</a>
+        <a href="#publications" style="color: #4a4f5c">Publications</a>
+        <a href="#projects" style="color: #4a4f5c">Projects</a>
+        <a href="#opensource" style="color: #4a4f5c">Open source</a>
+        <a href="#notes" style="color: #4a4f5c">Study notes</a>
+        <a href="cv.pdf" style="color: #1f4fd1; font-weight: 600">CV</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="top" style="max-width: 1160px; margin: 0 auto; padding: 56px 32px 96px; display: flex; flex-wrap: wrap; gap: 56px 72px; align-items: flex-start">
+
+    <aside style="flex: 1 1 240px; max-width: 280px; display: flex; flex-direction: column; gap: 20px">
+      <img src="assets/portrait.png" alt="Portrait of ChanHui Jung" style="width: 200px; height: 200px; object-fit: cover; border-radius: 12px; background: #eef0f3">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <h1 style="margin: 0; font-size: 26px; line-height: 1.25; font-weight: 700; letter-spacing: -0.01em">ChanHui Jung</h1>
+        <p lang="ko" style="margin: 0; font-size: 15px; color: #5b6170">정찬희</p>
+      </div>
+      <p style="margin: 0; font-size: 15px; color: #2b2f38">M.S. student in Robotics<br>University of Michigan</p>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Contact</span>
+        <div style="display: flex; flex-direction: column; border: 1px solid #e6e8ec; border-radius: 12px; background: #f7f8fa; overflow: hidden">
+          <a href="mailto:qhrejddlvltm@gmail.com" style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 12px; color: #16181d; text-decoration: none">
+            <span style="flex: 0 0 32px; width: 32px; height: 32px; border-radius: 8px; background: #ffffff; border: 1px solid #e6e8ec; display: flex; align-items: center; justify-content: center; color: #1f4fd1"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg></span>
+            <span style="display: flex; flex-direction: column; min-width: 0; line-height: 1.35"><span style="font-size: 12px; color: #5b6170">Personal</span><span style="font-size: 14px; font-weight: 500; overflow-wrap: anywhere">qhrejddlvltm@gmail.com</span></span>
+          </a>
+          <a href="mailto:chanhui@umich.edu" style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 12px; border-top: 1px solid #e6e8ec; color: #16181d; text-decoration: none">
+            <span style="flex: 0 0 32px; width: 32px; height: 32px; border-radius: 8px; background: #ffffff; border: 1px solid #e6e8ec; display: flex; align-items: center; justify-content: center; color: #1f4fd1"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 2 9 2 12 0v-5"></path></svg></span>
+            <span style="display: flex; flex-direction: column; min-width: 0; line-height: 1.35"><span style="font-size: 12px; color: #5b6170">School</span><span style="font-size: 14px; font-weight: 500; overflow-wrap: anywhere">chanhui@umich.edu</span></span>
+          </a>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Links</span>
+        <div style="display: flex; flex-direction: column">
+          <a href="https://scholar.google.com/citations?user=pR_cJxIAAAAJ&amp;hl=en" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 4px; border-bottom: 1px solid #eef0f3; color: #16181d; font-size: 14px; font-weight: 500; text-decoration: none"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4a4f5c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg><span style="flex: 1 1 auto">Google Scholar</span><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a909c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
+          <a href="https://github.com/ladianchad" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 4px; border-bottom: 1px solid #eef0f3; color: #16181d; font-size: 14px; font-weight: 500; text-decoration: none"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4a4f5c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8 8-4 4 4 4"></path><path d="m16 8 4 4-4 4"></path></svg><span style="flex: 1 1 auto">GitHub</span><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a909c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
+          <a href="https://www.linkedin.com/in/ch-ladi" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 4px; border-bottom: 1px solid #eef0f3; color: #16181d; font-size: 14px; font-weight: 500; text-decoration: none"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4a4f5c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg><span style="flex: 1 1 auto">LinkedIn</span><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a909c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
+          <a href="https://robotics-study.github.io/" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 4px; border-bottom: 1px solid #eef0f3; color: #16181d; font-size: 14px; font-weight: 500; text-decoration: none"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4a4f5c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2z"></path><path d="M22 5h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"></path></svg><span style="flex: 1 1 auto">robotics-study</span><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a909c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
+          <a href="https://coding-robot.tistory.com/" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 4px; color: #16181d; font-size: 14px; font-weight: 500; text-decoration: none"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4a4f5c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg><span style="flex: 1 1 auto">Blog <span style="font-weight: 400; color: #5b6170">(Korean)</span></span><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8a909c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"></path><path d="M8 7h9v9"></path></svg></a>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+        <a href="cv.pdf" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 14px; border-radius: 10px; background: #1f4fd1; color: #ffffff; font-weight: 600; font-size: 14px; text-decoration: none; box-shadow: 0 1px 2px rgba(22, 24, 29, 0.16)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M5 20h14"></path></svg>CV</a>
+        <a href="resume.pdf" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 14px; border-radius: 10px; border: 1px solid #cfd3da; background: #ffffff; color: #16181d; font-weight: 600; font-size: 14px; text-decoration: none; box-shadow: 0 1px 2px rgba(22, 24, 29, 0.06)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"></path><path d="m7 10 5 5 5-5"></path><path d="M5 20h14"></path></svg>Resume</a>
+      </div>
+    </aside>
+
+    <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 72px">
+
+      <section aria-labelledby="about-h" style="display: flex; flex-direction: column; gap: 18px">
+        <h2 id="about-h" style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #16181d; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">About</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #16181d">I am an M.S. student in Robotics at the University of Michigan. I work on multi-robot navigation and multi-agent path finding, with a focus on crowded spaces where robots keep blocking each other.</p>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #2b2f38">Before Michigan I spent three years in industry. At Floatic I built the navigation stack and middleware for a fleet of warehouse robots. At Metafarmers I led a seven-person robotics team that put two agricultural robots into production.</p>
+        <p style="margin: 0; font-size: 17px; line-height: 1.65; color: #2b2f38">I am looking for PhD positions starting in Fall 2027.</p>
+      </section>
+
+      <section id="experience" aria-labelledby="exp-h" style="display: flex; flex-direction: column; gap: 4px">
+        <h2 id="exp-h" style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #16181d; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">Professional experience</h2>
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 18px 0; border-bottom: 1px solid #eef0f3"><div style="flex: 0 0 120px; display: flex; flex-direction: column; font-size: 14px; color: #5b6170"><span>Sep 2025 –</span><span>Apr 2026</span><span style="font-size: 13px">Seoul, Korea</span></div><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 4px"><div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px"><b style="font-weight: 600"><a href="https://metafarmers.ai" style="color: #16181d">Metafarmers</a></b><span style="font-size: 14px; color: #4a4f5c">Robotics Software Team Lead</span></div><span style="font-size: 14px; color: #5b6170">AI and robotics that automate repetitive, skilled farm work.</span><ul style="margin: 6px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; color: #2b2f38"><li>Built and led a seven-person robotics AI team, and set its structure, technical roadmap and system architecture.</li><li>Owned the Omni Farmer robotics stack from architecture to production, with two robots operating in unstructured smart-farm environments.</li><li>Designed the multi-robot management system and its infrastructure so the deployment could grow to larger fleets.</li></ul></div></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 18px 0; border-bottom: 1px solid #eef0f3"><div style="flex: 0 0 120px; display: flex; flex-direction: column; font-size: 14px; color: #5b6170"><span>Jul 2022 –</span><span>Sep 2024</span><span style="font-size: 13px">Seoul, Korea</span></div><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 4px"><div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px"><b style="font-weight: 600">Floatic</b><span style="font-size: 14px; color: #4a4f5c">Robotics Software and Platform Engineer</span></div><span style="font-size: 14px; color: #5b6170">Warehouse automation: autonomous mobile robots and a real-time fleet management platform.</span><ul style="margin: 6px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; color: #2b2f38"><li>Designed the robot software architecture for Flody, including a middleware layer that kept robot code independent of the backend, so Kafka and AWS IoT could be swapped without touching the robots.</li><li>Built and deployed multi-robot navigation across three warehouse sites: two partner-operated production facilities and one internal testbed.</li><li>Ran a fleet of 10 robots for more than 300 hours of live operation and cut fleet deadlocks from 3–4 per hour to about one every two hours.</li></ul></div></div>
+        </div>
+      </section>
+
+      <section id="education" aria-labelledby="edu-h" style="display: flex; flex-direction: column; gap: 4px">
+        <h2 id="edu-h" style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #16181d; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">Education</h2>
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">2026 – now</span><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><b style="font-weight: 600">University of Michigan</b><span style="font-size: 14px; color: #4a4f5c">M.S. in Robotics</span></div></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">2016 – 2023</span><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><b style="font-weight: 600">Hanyang University ERICA</b><span style="font-size: 14px; color: #4a4f5c">B.S. in Robotics Engineering</span></div></div>
+        </div>
+      </section>
+
+      <section id="research" aria-labelledby="res-h" style="display: flex; flex-direction: column; gap: 4px">
+        <h2 id="res-h" style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #16181d; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">Research experience</h2>
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">2024 – 2025</span><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><b style="font-weight: 600">Multi-agent path finding in congested environments</b><span style="font-size: 14px; color: #4a4f5c">Research collaboration with AIRO Lab, Hanyang University ERICA. Worked on continuous-time CBS and agent merging and splitting; co-authored the two papers below.</span></div></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">2019 – 2021</span><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><b style="font-weight: 600">AIRO Lab, Hanyang University ERICA</b><span style="font-size: 14px; color: #4a4f5c">Undergraduate Researcher, advised by Prof. Min-Sung Kang. Stereo pose estimation for screw insertion in the Item Assembly AI Robot Challenge.</span></div></div>
+        </div>
+      </section>
+
+      <section id="publications" aria-labelledby="pub-h" style="display: flex; flex-direction: column; gap: 20px">
+        <h2 id="pub-h" style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #16181d; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">Publications</h2>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start">
+          <figure style="margin: 0; flex: 0 0 220px; display: flex; flex-direction: column; gap: 6px">
+            <img src="assets/pub-cbs-space-utilization.jpg" alt="Two grids comparing agent paths without and with space utilization" style="width: 220px; height: 128px; object-fit: contain; background: #ffffff; border: 1px solid #e6e8ec; border-radius: 8px; padding: 6px; box-sizing: border-box">
+            <figcaption style="font-size: 12px; line-height: 1.45; color: #5b6170">Fig. 2. Without (a) and with (b) space utilization.</figcaption>
+          </figure>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <h3 style="margin: 0; font-size: 16px; line-height: 1.45; font-weight: 600">A Study on Improving Conflict Based Search with Continuous Time Using Space Utilization</h3>
+            <p style="margin: 0; font-size: 14px; color: #2b2f38">S. Im, S. Yoo, H. Kang, <b>C. Jung</b>, D. Han, M.-S. Kang</p>
+            <p style="margin: 0; font-size: 14px; color: #5b6170"><i>Journal of the Korean Society for Precision Engineering</i>, 43(4), 317–324, 2026</p>
+            <div style="display: flex; gap: 16px; font-size: 14px; font-weight: 500"><a href="https://doi.org/10.7736/JKSPE.025.045">DOI</a><a href="http://jkspe.or.kr/upload/pdf/JKSPE-025-045.pdf">PDF</a></div>
+          </div>
+        </article>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start; padding-top: 20px; border-top: 1px solid #eef0f3">
+          <figure style="margin: 0; flex: 0 0 220px; display: flex; flex-direction: column; gap: 6px">
+            <img src="assets/pub-mapf-merge-split.jpg" alt="Four grid scenarios of conflicts between merged agent sets" style="width: 220px; height: 176px; object-fit: contain; background: #ffffff; border: 1px solid #e6e8ec; border-radius: 8px; padding: 6px; box-sizing: border-box">
+            <figcaption style="font-size: 12px; line-height: 1.45; color: #5b6170">Fig. 4. Conflict scenarios between agent sets.</figcaption>
+          </figure>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <h3 style="margin: 0; font-size: 16px; line-height: 1.45; font-weight: 600">A Study on Improving Multi-agent Path Finding in Congested Environments Using Agent Merging and Splitting</h3>
+            <p style="margin: 0; font-size: 14px; color: #2b2f38">S. Yoo, S. Im, H. Kang, <b>C. Jung</b>, D. Han, M.-S. Kang</p>
+            <p style="margin: 0; font-size: 14px; color: #5b6170"><i>Journal of the Korean Society for Precision Engineering</i>, 43(2), 123–131, 2026</p>
+            <div style="display: flex; gap: 16px; font-size: 14px; font-weight: 500"><a href="https://doi.org/10.7736/JKSPE.025.044">DOI</a><a href="http://jkspe.or.kr/upload/pdf/JKSPE-025-044.pdf">PDF</a></div>
+          </div>
+        </article>
+        <p style="margin: 0; font-size: 12px; color: #5b6170">Figures reproduced from the papers under CC BY-NC 3.0.</p>
+      </section>
+
+      <section id="projects" aria-labelledby="proj-h" style="display: flex; flex-direction: column; gap: 20px">
+        <h2 id="proj-h" style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #16181d; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">Projects</h2>
+
+        <h3 style="margin: 4px 0 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Industry</h3>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start">
+          <a href="projects/omni-farmer.html" style="flex: 0 0 220px; display: block"><img src="assets/omni-farmer.jpg" alt="Omni Farmer, a mobile base with two robot arms" style="display: block; width: 220px; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #e6e8ec"></a>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h4 style="margin: 0; font-size: 16px; font-weight: 600"><a href="projects/omni-farmer.html" style="color: #16181d">Omni Farmer: agricultural robots</a></h4><span style="font-size: 14px; color: #5b6170">Metafarmers, 2025–2026</span></div>
+            <p style="margin: 0; font-size: 15px; color: #2b2f38">Strawberry harvesting and pollination robots. Defined the ROS 2 architecture from the motor control boards up to navigation; long-term SLAM fusing FAST-LIO with Cartographer kept localization stable across a 100 × 200 m site. Two robots went into production.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; font-size: 14px"><a href="projects/omni-farmer.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600">Read the case study<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a><a href="https://metafarmers.ai" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 500">metafarmers.ai</a></div>
+          </div>
+        </article>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start; padding-top: 20px; border-top: 1px solid #eef0f3">
+          <a href="projects/gwacheon-apple-robot.html" style="flex: 0 0 220px; display: block"><img src="assets/gwacheon-poster.jpg" alt="Exhibition poster with a robot arm in a greenhouse" style="display: block; width: 220px; height: 150px; object-fit: cover; object-position: center 70%; border-radius: 8px; border: 1px solid #e6e8ec"></a>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h4 style="margin: 0; font-size: 16px; font-weight: 600"><a href="projects/gwacheon-apple-robot.html" style="color: #16181d">Apple-harvesting exhibit robot</a></h4><span style="font-size: 14px; color: #5b6170">Metafarmers, 2026</span></div>
+            <p style="margin: 0; font-size: 15px; color: #2b2f38">A robot delivered to the Gwacheon National Science Museum for its farm-technology exhibition, where it recognizes apples and picks them without bruising using a gripper from the Rural Development Administration.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; font-size: 14px"><a href="projects/gwacheon-apple-robot.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600">Read the case study<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a></div>
+          </div>
+        </article>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start; padding-top: 20px; border-top: 1px solid #eef0f3">
+          <a href="projects/flody.html" style="flex: 0 0 220px; display: block"><img src="assets/flody.jpg" alt="A Floatic picking robot in a warehouse aisle" style="display: block; width: 220px; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #e6e8ec"></a>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h4 style="margin: 0; font-size: 16px; font-weight: 600"><a href="projects/flody.html" style="color: #16181d">Flody: warehouse robot fleet</a></h4><span style="font-size: 14px; color: #5b6170">Floatic, 2022–2024</span></div>
+            <p style="margin: 0; font-size: 15px; color: #2b2f38">Robots shared their poses and planned paths over a site-local Redis bus and added nearby robots to their own costmaps. Fleet deadlocks went from 3–4 per hour to about one every two hours. The system ran 10 robots for more than 300 hours across 3 warehouse sites.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; font-size: 14px"><a href="projects/flody.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600">Read the case study<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a><a href="https://www.youtube.com/watch?v=0acR1xwGQf8" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 500">Demo video</a><a href="https://www.therobotreport.com/floatic-raises-38m-for-amrs-to-tackle-e-commerce-picking/" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 500">The Robot Report</a></div>
+          </div>
+        </article>
+
+        <h3 style="margin: 12px 0 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Contract and lab work</h3>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start">
+          <a href="projects/churo.html" style="flex: 0 0 220px; display: block"><img src="assets/churo-training.jpg" alt="Training loss and accuracy curves for the behavior classifier" style="display: block; width: 220px; height: 150px; object-fit: cover; object-position: left top; border-radius: 8px; border: 1px solid #e6e8ec"></a>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h4 style="margin: 0; font-size: 16px; font-weight: 600"><a href="projects/churo.html" style="color: #16181d">Churo: dog behavior recognition</a></h4><span style="font-size: 14px; color: #5b6170">ROBOI contract, 2021</span></div>
+            <p style="margin: 0; font-size: 15px; color: #2b2f38">Behavior recognition for a dog-care robot. YOLOv5 and SORT followed the dog, a labeling tool built 20-frame clips, and a ResNet-CRNN classifier sorted them into five behaviors at 90.4–96.8% test accuracy on 344 clips.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; font-size: 14px"><a href="projects/churo.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600">Read the case study<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a></div>
+          </div>
+        </article>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start; padding-top: 20px; border-top: 1px solid #eef0f3">
+          <a href="projects/item-assembly.html" style="flex: 0 0 220px; display: block"><img src="assets/item-assembly-stereo.jpg" alt="Stereo camera views of a furniture panel with detected screw holes" style="display: block; width: 220px; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #e6e8ec"></a>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h4 style="margin: 0; font-size: 16px; font-weight: 600"><a href="projects/item-assembly.html" style="color: #16181d">Item Assembly: stereo hole detection</a></h4><span style="font-size: 14px; color: #5b6170">AIRO Lab, 2020</span></div>
+            <p style="margin: 0; font-size: 15px; color: #2b2f38">Pose estimation for screw insertion in a government-funded furniture-assembly challenge. YOLOv5 found screw holes, a pattern match removed false hits, and stereo triangulation gave a 3D pose that ROS services passed to the arm.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; font-size: 14px"><a href="projects/item-assembly.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600">Read the case study<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a></div>
+          </div>
+        </article>
+
+        <h3 style="margin: 12px 0 0; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5b6170">Undergraduate projects</h3>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start">
+          <a href="projects/rescue-robot.html" style="flex: 0 0 220px; display: block"><img src="assets/rescue-robot-cad.jpg" alt="CAD render of the U-shaped rescue-assist robot" style="display: block; width: 220px; height: 150px; object-fit: cover; background: #000000; border-radius: 8px; border: 1px solid #e6e8ec"></a>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h4 style="margin: 0; font-size: 16px; font-weight: 600"><a href="projects/rescue-robot.html" style="color: #16181d">Help: marine rescue-assist robot</a></h4><span style="font-size: 14px; color: #5b6170">Capstone, 2020–2022</span></div>
+            <p style="margin: 0; font-size: 15px; color: #2b2f38">An unmanned robot for marine accidents. It detects capsizing from IMU tilt and alerts over LoRa, finds people in the water with RGB and thermal cameras, and reports their GPS position until rescuers arrive. Special Prize at the 2022 National Capstone Design Competition, plus two awards in 2021.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; font-size: 14px"><a href="projects/rescue-robot.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600">Read the case study<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a></div>
+          </div>
+        </article>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start; padding-top: 20px; border-top: 1px solid #eef0f3">
+          <a href="projects/recycling-robot.html" style="flex: 0 0 220px; display: block"><img src="assets/recycling-robot.jpg" alt="The recycling robot in its mug-shaped shell" style="display: block; width: 220px; height: 150px; object-fit: cover; border-radius: 8px; border: 1px solid #e6e8ec"></a>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h4 style="margin: 0; font-size: 16px; font-weight: 600"><a href="projects/recycling-robot.html" style="color: #16181d">Recycling and donation robot</a></h4><span style="font-size: 14px; color: #5b6170">Intelligent Robot Crash Lab, 2020</span></div>
+            <p style="margin: 0; font-size: 15px; color: #2b2f38">A ROS service robot on a LattePanda and Jetson TX2. YOLOv5 found people and classified cups as paper or plastic, a depth grid handled obstacle avoidance, and a touchscreen walked visitors through sorting and a QR donation. Team of 6.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; font-size: 14px"><a href="projects/recycling-robot.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600">Read the case study<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a><a href="https://youtu.be/2ig5qAAA0DM" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 500">Demo video</a></div>
+          </div>
+        </article>
+
+        <article style="display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: flex-start; padding-top: 20px; border-top: 1px solid #eef0f3">
+          <a href="projects/unieye.html" style="flex: 0 0 220px; display: block"><img src="assets/unieye-gui.jpg" alt="Inspection program window with two camera views of circular marks" style="display: block; width: 220px; height: 150px; object-fit: cover; object-position: left top; border-radius: 8px; border: 1px solid #e6e8ec"></a>
+          <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
+            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px"><h4 style="margin: 0; font-size: 16px; font-weight: 600"><a href="projects/unieye.html" style="color: #16181d">Pattern inspection with two industrial cameras</a></h4><span style="font-size: 14px; color: #5b6170">UNIEYE, Feb–Jul 2020</span></div>
+            <p style="margin: 0; font-size: 15px; color: #2b2f38">A C++/Qt inspection program on a Jetson Nano with two Basler cameras. It found circular marks with a hand-written Gaussian filter and Canny edge detector and passed or failed each part. I built the interface and the communication on a team of two.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; font-size: 14px"><a href="projects/unieye.html" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-weight: 600">Read the case study<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m13 6 6 6-6 6"></path></svg></a></div>
+          </div>
+        </article>
+      </section>
+
+      <section id="opensource" aria-labelledby="oss-h" style="display: flex; flex-direction: column; gap: 4px">
+        <h2 id="oss-h" style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #16181d; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">Open source</h2>
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">2022</span><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><a href="https://github.com/ros-navigation/navigation2/pull/3068" style="align-self: flex-start; font-weight: 600">navigation2 #3068</a><span style="font-size: 14px; color: #4a4f5c">Proposed a plugin-based navigator design. The maintainers adopted it and shipped it as <code style="font-size: 13px">nav2_core::NavigatorBase</code>.</span></div></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">2022</span><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><a href="https://github.com/ros2/rcl/pull/1003" style="align-self: flex-start; font-weight: 600">ros2/rcl #1003</a><span style="font-size: 14px; color: #4a4f5c">Fixed <code style="font-size: 13px">rcl_wait</code> returning an error when a timer is cancelled. Merged.</span></div></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">2022</span><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><a href="https://github.com/ros-navigation/navigation2/pull/3141" style="align-self: flex-start; font-weight: 600">navigation2 #3141</a><span style="font-size: 14px; color: #4a4f5c">Fixed path joining in <code style="font-size: 13px">RewrittenYaml</code>. Merged.</span></div></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 14px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">2023</span><div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><a href="https://github.com/ros-navigation/navigation2/pull/3927" style="align-self: flex-start; font-weight: 600">navigation2 #3927</a><span style="font-size: 14px; color: #4a4f5c">Fixed the MPPI controller test build. Merged.</span></div></div>
+        </div>
+      </section>
+
+      <section id="notes" aria-labelledby="notes-h" style="display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; padding-bottom: 10px; border-bottom: 2px solid #16181d">
+          <h2 id="notes-h" style="margin: 0; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">Study notes</h2>
+          <a href="https://robotics-study.github.io/" style="font-size: 14px; font-weight: 500">robotics-study.github.io</a>
+        </div>
+        <p style="margin: 0; color: #2b2f38">I maintain robotics-study, a set of open study notes in English and Korean. Each algorithm is implemented in both C++ and Python and replayed step by step in the browser.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
+          <a href="https://robotics-study.github.io/mrmp_introduction/" style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid #e6e8ec; border-radius: 10px; color: #16181d; text-decoration: none">
+            <img src="assets/notes-cbs-swap.gif" alt="Conflict-Based Search resolving a swap between two agents" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px; background: #ffffff">
+            <span style="font-weight: 600">Multi-robot motion planning</span>
+            <span style="font-size: 14px; color: #4a4f5c">Prioritized A*, CBS, PIBT, RHCR, dRRT*, db-CBS</span>
+          </a>
+          <a href="https://robotics-study.github.io/navigation_basic/" style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid #e6e8ec; border-radius: 10px; color: #16181d; text-decoration: none">
+            <img src="assets/notes-astar-maze.gif" alt="A* search expanding through a maze" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px; background: #ffffff">
+            <span style="font-weight: 600">Navigation planning</span>
+            <span style="font-size: 14px; color: #4a4f5c">Graph search, sampling planners, DWA, MPC, MPPI</span>
+          </a>
+          <a href="https://robotics-study.github.io/modern_robotics/" style="display: flex; flex-direction: column; gap: 10px; padding: 14px; border: 1px solid #e6e8ec; border-radius: 10px; color: #16181d; text-decoration: none">
+            <img src="assets/notes-modern-robotics.png" alt="Interactive 3D scene of a mobile manipulator next to a wall and boxes" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 6px; background: #000000">
+            <span style="font-weight: 600">Modern Robotics</span>
+            <span style="font-size: 14px; color: #4a4f5c">All 13 chapters of Lynch and Park, with live figures</span>
+          </a>
+        </div>
+        <p style="margin: 0; font-size: 14px; color: #4a4f5c">Also: <a href="https://robotics-study.github.io/linear_algebra_to_kalman/">notes for ROB 501</a> (proofs to the Kalman filter), and 45 Korean posts on ROS 2 and Nav2 internals on <a href="https://coding-robot.tistory.com/">my blog</a>.</p>
+      </section>
+
+      <section aria-labelledby="news-h" style="display: flex; flex-direction: column; gap: 4px">
+        <h2 id="news-h" style="margin: 0; padding-bottom: 10px; border-bottom: 2px solid #16181d; font-size: 20px; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; color: #16181d">News</h2>
+        <div style="display: flex; flex-direction: column">
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">Oct 2026</span><span style="flex: 1 1 300px; min-width: 0">Released <a href="https://robotics-study.github.io/mrmp_introduction/">mrmp_introduction</a>, study notes on multi-robot motion planning with a live sandbox.</span></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">Aug 2026</span><span style="flex: 1 1 300px; min-width: 0">Started the M.S. in Robotics at the University of Michigan.</span></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">Jul 2026</span><span style="flex: 1 1 300px; min-width: 0">Finished bilingual notes for all 13 chapters of <a href="https://robotics-study.github.io/modern_robotics/">Modern Robotics</a>.</span></div>
+          <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; padding: 12px 0; border-bottom: 1px solid #eef0f3"><span style="flex: 0 0 120px; font-size: 14px; color: #5b6170">Apr 2026</span><span style="flex: 1 1 300px; min-width: 0">Paper on continuous-time CBS with space utilization published in JKSPE.</span></div>
+        </div>
+      </section>
+
+      <footer style="padding-top: 24px; border-top: 1px solid #e6e8ec; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-size: 13px; color: #5b6170">
+        <span>ChanHui Jung · Ann Arbor, Michigan</span>
+        <span>Last updated Nov 2026</span>
+      </footer>
+    </main>
   </div>
 </div>
-
-<!-- ============ HERO ============ -->
-<header class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div class="hero-id">
-        <div class="eyebrow">
-          <span class="tk">SEOUL · KR</span>
-          <span class="rule"></span>
-          <span class="tk" style="color:var(--cyan)">EST. 2019</span>
-        </div>
-        <h1>ChanHui<br>Jung<span class="ko">정찬희</span></h1>
-        <p class="role">Robotics Software Engineer<span class="sep">·</span>Robotics AI Team Lead</p>
-        <p class="tagline">Making robot fleets move like crowds — <span class="hl">not gridlock.</span></p>
-        <p class="sub">Navigation, coordination &amp; fleet autonomy for real-world multi-robot systems — from smart farms to logistics warehouses.</p>
-        <div class="hero-links">
-          <a class="hlink" href="https://github.com/ladianchad">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C6.2 1.5 1.5 6.2 1.5 12c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.9c-2.9.6-3.5-1.2-3.5-1.2-.5-1.2-1.2-1.5-1.2-1.5-1-.6.1-.6.1-.6 1 .1 1.6 1 1.6 1 .9 1.6 2.5 1.1 3.1.9.1-.7.4-1.1.6-1.4-2.3-.3-4.7-1.2-4.7-5.1 0-1.1.4-2 1-2.7-.1-.3-.5-1.3.1-2.7 0 0 .9-.3 2.8 1a9.6 9.6 0 015 0c1.9-1.3 2.8-1 2.8-1 .6 1.4.2 2.4.1 2.7.7.7 1 1.6 1 2.7 0 3.9-2.4 4.8-4.7 5.1.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C22.5 6.2 17.8 1.5 12 1.5z"/></svg>
-            github.com/ladianchad
-          </a>
-          <a class="hlink" href="https://www.linkedin.com/in/ch-ladi">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05C21.4 8.65 22 11 22 14v7h-4v-6.2c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3V21h-4z"/></svg>
-            in/ch-ladi
-          </a>
-          <a class="hlink" href="https://coding-robot.tistory.com">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h10" stroke-linecap="round"/></svg>
-            coding-robot.tistory.com
-          </a>
-        </div>
-      </div>
-
-      <div class="hud">
-        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-        <div class="scanline"></div>
-        <div class="hud-bar">
-          <span class="lbl-c">◆ MAPF.SOLVER</span>
-          <span>WAREHOUSE&nbsp;GRID</span>
-          <span class="lbl-a">AGENTS:04 · CONFLICTS:02</span>
-        </div>
-        <svg class="fleet" viewBox="0 0 560 380" role="img" aria-label="Multi-robot path finding diagram: a warehouse grid lattice with four robot nodes and their colored trajectory paths weaving through shelves, with two conflict points highlighted.">
-          <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M40 0H0V40" fill="none" stroke="#16233d" stroke-width="1"/>
-            </pattern>
-            <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.35"/>
-              <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-            </radialGradient>
-            <marker id="arrowC" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#22d3ee"/></marker>
-            <marker id="arrowA" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#f5a623"/></marker>
-            <marker id="arrowM" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#e879f9"/></marker>
-            <marker id="arrowG" markerWidth="9" markerHeight="9" refX="6" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9z" fill="#4ade80"/></marker>
-          </defs>
-
-          <rect x="20" y="20" width="520" height="340" fill="url(#grid)" opacity="0.85"/>
-          <rect x="20" y="20" width="520" height="340" fill="none" stroke="#1d2e4d" stroke-width="1.5"/>
-
-          <g fill="#0e1a30" stroke="#1d2e4d" stroke-width="1">
-            <rect x="100" y="60" width="80" height="40" rx="2"/>
-            <rect x="100" y="140" width="80" height="40" rx="2"/>
-            <rect x="100" y="220" width="80" height="40" rx="2"/>
-            <rect x="260" y="60" width="80" height="40" rx="2"/>
-            <rect x="260" y="220" width="80" height="40" rx="2"/>
-            <rect x="380" y="140" width="80" height="40" rx="2"/>
-            <rect x="380" y="280" width="40" height="40" rx="2"/>
-          </g>
-          <g stroke="#15314a" stroke-width="1" opacity="0.7">
-            <line x1="120" y1="60" x2="120" y2="100"/><line x1="140" y1="60" x2="140" y2="100"/><line x1="160" y1="60" x2="160" y2="100"/>
-            <line x1="120" y1="140" x2="120" y2="180"/><line x1="140" y1="140" x2="140" y2="180"/><line x1="160" y1="140" x2="160" y2="180"/>
-            <line x1="280" y1="60" x2="280" y2="100"/><line x1="300" y1="60" x2="300" y2="100"/><line x1="320" y1="60" x2="320" y2="100"/>
-            <line x1="400" y1="140" x2="400" y2="180"/><line x1="420" y1="140" x2="420" y2="180"/><line x1="440" y1="140" x2="440" y2="180"/>
-          </g>
-
-          <path d="M60 60 L60 120 L220 120 L220 200 L300 200 L300 300 L500 300"
-                fill="none" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                stroke-dasharray="2 7" marker-end="url(#arrowC)" opacity="0.95"/>
-          <g fill="#05080f" stroke="#22d3ee" stroke-width="1.6">
-            <circle cx="60" cy="120" r="3.2"/><circle cx="220" cy="120" r="3.2"/><circle cx="220" cy="200" r="3.2"/><circle cx="300" cy="200" r="3.2"/><circle cx="300" cy="300" r="3.2"/>
-          </g>
-
-          <path d="M500 60 L500 160 L340 160 L340 120 L240 120 L240 280 L120 280 L120 340"
-                fill="none" stroke="#f5a623" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                stroke-dasharray="2 7" marker-end="url(#arrowA)" opacity="0.95"/>
-          <g fill="#05080f" stroke="#f5a623" stroke-width="1.6">
-            <circle cx="500" cy="160" r="3.2"/><circle cx="340" cy="160" r="3.2"/><circle cx="340" cy="120" r="3.2"/><circle cx="240" cy="120" r="3.2"/><circle cx="240" cy="280" r="3.2"/><circle cx="120" cy="280" r="3.2"/>
-          </g>
-
-          <path d="M40 200 L80 200 L80 320 L220 320 L220 240 L360 240 L360 200 L460 200 L460 240"
-                fill="none" stroke="#e879f9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                stroke-dasharray="2 7" marker-end="url(#arrowM)" opacity="0.9"/>
-          <g fill="#05080f" stroke="#e879f9" stroke-width="1.6">
-            <circle cx="80" cy="200" r="3.2"/><circle cx="80" cy="320" r="3.2"/><circle cx="220" cy="320" r="3.2"/><circle cx="220" cy="240" r="3.2"/><circle cx="360" cy="240" r="3.2"/><circle cx="360" cy="200" r="3.2"/><circle cx="460" cy="200" r="3.2"/>
-          </g>
-
-          <path d="M300 340 L300 200 L300 120 L380 120 L380 60 L460 60 L460 40"
-                fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                stroke-dasharray="2 7" marker-end="url(#arrowG)" opacity="0.85"/>
-          <g fill="#05080f" stroke="#4ade80" stroke-width="1.6">
-            <circle cx="300" cy="200" r="3.2"/><circle cx="300" cy="120" r="3.2"/><circle cx="380" cy="120" r="3.2"/><circle cx="380" cy="60" r="3.2"/><circle cx="460" cy="60" r="3.2"/>
-          </g>
-
-          <g>
-            <circle cx="300" cy="200" r="22" fill="url(#glow)"/>
-            <circle cx="300" cy="200" r="11" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-dasharray="3 3"/>
-            <circle cx="300" cy="200" r="4.5" fill="none" stroke="#f5a623" stroke-width="1.6"/>
-            <line x1="300" y1="183" x2="300" y2="217" stroke="#f5a623" stroke-width="1"/>
-            <line x1="283" y1="200" x2="317" y2="200" stroke="#f5a623" stroke-width="1"/>
-            <circle cx="240" cy="240" r="20" fill="url(#glow)"/>
-            <circle cx="240" cy="240" r="10" fill="none" stroke="#f5a623" stroke-width="1.4" stroke-dasharray="3 3"/>
-            <circle cx="240" cy="240" r="4.5" fill="none" stroke="#f5a623" stroke-width="1.6"/>
-            <line x1="240" y1="225" x2="240" y2="255" stroke="#f5a623" stroke-width="1"/>
-            <line x1="225" y1="240" x2="255" y2="240" stroke="#f5a623" stroke-width="1"/>
-          </g>
-
-          <g transform="translate(60,60)">
-            <rect x="-9" y="-9" width="18" height="18" rx="3" fill="#0a1726" stroke="#22d3ee" stroke-width="1.8"/>
-            <circle cx="0" cy="0" r="3.5" fill="#22d3ee"/>
-            <text x="0" y="-15" font-family="'SF Mono',Menlo,monospace" font-size="9" fill="#22d3ee" text-anchor="middle">R1</text>
-          </g>
-          <g transform="translate(500,60)">
-            <rect x="-9" y="-9" width="18" height="18" rx="3" fill="#1a1407" stroke="#f5a623" stroke-width="1.8"/>
-            <circle cx="0" cy="0" r="3.5" fill="#f5a623"/>
-            <text x="0" y="-15" font-family="'SF Mono',Menlo,monospace" font-size="9" fill="#f5a623" text-anchor="middle">R2</text>
-          </g>
-          <g transform="translate(40,200)">
-            <rect x="-9" y="-9" width="18" height="18" rx="3" fill="#1c0f25" stroke="#e879f9" stroke-width="1.8"/>
-            <circle cx="0" cy="0" r="3.5" fill="#e879f9"/>
-            <text x="0" y="-15" font-family="'SF Mono',Menlo,monospace" font-size="9" fill="#e879f9" text-anchor="middle">R3</text>
-          </g>
-          <g transform="translate(300,340)">
-            <rect x="-9" y="-9" width="18" height="18" rx="3" fill="#0c1f14" stroke="#4ade80" stroke-width="1.8"/>
-            <circle cx="0" cy="0" r="3.5" fill="#4ade80"/>
-            <text x="0" y="22" font-family="'SF Mono',Menlo,monospace" font-size="9" fill="#4ade80" text-anchor="middle">R4</text>
-          </g>
-
-          <g stroke-width="1.5" fill="none">
-            <g transform="translate(500,300)"><circle r="7" stroke="#22d3ee"/><circle r="2.4" fill="#22d3ee" stroke="none"/></g>
-            <g transform="translate(120,340)"><circle r="7" stroke="#f5a623"/><circle r="2.4" fill="#f5a623" stroke="none"/></g>
-            <g transform="translate(460,240)"><circle r="7" stroke="#e879f9"/><circle r="2.4" fill="#e879f9" stroke="none"/></g>
-            <g transform="translate(460,40)"><circle r="7" stroke="#4ade80"/><circle r="2.4" fill="#4ade80" stroke="none"/></g>
-          </g>
-        </svg>
-        <div class="hud-legend">
-          <span><i style="background:#22d3ee"></i>R1 · cyan</span>
-          <span><i style="background:#f5a623"></i>R2 · amber</span>
-          <span><i style="background:#e879f9"></i>R3 · magenta</span>
-          <span><i style="background:#4ade80"></i>R4 · green</span>
-          <span style="margin-left:auto;color:var(--amber)">⊕ conflict resolved</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="metrics">
-      <div class="tile">
-        <span class="tc a"></span><span class="tc b"></span>
-        <div class="num">90<span class="u">%</span></div>
-        <div class="lab">Navigation Success</div>
-        <div class="sublab">Floady · field-validated</div>
-      </div>
-      <div class="tile amber">
-        <span class="tc a"></span><span class="tc b"></span>
-        <div class="num">300<span class="u">+</span></div>
-        <div class="lab">Field Hours</div>
-        <div class="sublab">Warehouse deployment</div>
-      </div>
-      <div class="tile">
-        <span class="tc a"></span><span class="tc b"></span>
-        <div class="num">10<span class="u">+</span></div>
-        <div class="lab">AMRs Deployed</div>
-        <div class="sublab">Coordinated fleet</div>
-      </div>
-      <div class="tile amber">
-        <span class="tc a"></span><span class="tc b"></span>
-        <div class="num">$2.3<span class="u">M</span></div>
-        <div class="lab">Venture-Funded</div>
-        <div class="sublab">Omni Farmer project</div>
-      </div>
-    </div>
-  </div>
-</header>
-
-<div class="wrap"><div class="divscan"></div></div>
-
-<!-- ============ ABOUT ============ -->
-<section id="about">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="idx">// 01</span>
-      <h2>SYSTEM.<b>ABOUT</b></h2>
-      <span class="meta">RESEARCH&nbsp;FOCUS · MAPF / FLEET</span>
-    </div>
-    <div class="about-grid">
-      <div>
-        <p class="about-lead">I build the software that lets <span class="hl">many robots share one space</span> — planning conflict-free paths, coordinating fleets, and keeping autonomy reliable when the real world gets crowded.</p>
-        <div class="about-body">
-          <p>My specialty is <span class="em">Multi-Robot Navigation &amp; Multi-Agent Path Finding (MAPF)</span> — the algorithms and system architecture that turn a pile of independent robots into a coordinated, congestion-aware fleet. I've shipped this from both ends: decentralized coordination running on real warehouse AMRs, and centralized fleet management for autonomous agriculture.</p>
-          <p>I work across the full stack of a robotics platform — from <span class="em">perception and control</span> on the robot, through <span class="em">middleware</span> connecting robots to backend and frontend, up to the <span class="em">fleet-management infrastructure</span> that orchestrates everyone. I also contribute upstream to the open-source navigation stack the field runs on (ROS2 Nav2).</p>
-        </div>
-      </div>
-      <div class="focus-card">
-        <div class="fc-head">◇ CORE&nbsp;COMPETENCIES</div>
-        <div class="focus-row">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><path d="M8.5 6h7M6 8.5v7M18 8.5v7M8.5 18h7" stroke-dasharray="2 2"/></svg></div>
-          <div><h4>Multi-Robot Navigation &amp; MAPF</h4><p>Conflict-based search, congestion-aware planning &amp; decentralized coordination at fleet scale.</p></div>
-        </div>
-        <div class="focus-row">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="8.5" y="14" width="7" height="7" rx="1"/><path d="M6.5 10v2.5M17.5 10v2.5M6.5 12.5h11"/></svg></div>
-          <div><h4>System Architecture &amp; Fleet Management</h4><p>Middleware &amp; infrastructure linking robots ↔ backend ↔ frontend for live fleet operations.</p></div>
-        </div>
-        <div class="focus-row">
-          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg></div>
-          <div><h4>Perception &amp; Control</h4><p>Vision-based pose estimation, LiDAR SLAM, and the control loops that close them.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="wrap"><div class="divscan"></div></div>
-
-<!-- ============ EXPERIENCE ============ -->
-<section id="experience">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="idx">// 02</span>
-      <h2>SYSTEM.<b>EXPERIENCE</b></h2>
-      <span class="meta">2022 → PRESENT</span>
-    </div>
-    <div class="xp">
-
-      <article class="xp-card amber">
-        <div class="xp-top">
-          <div>
-            <div class="xp-co">
-              <div class="xp-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.7"><path d="M12 21c0-5 3-8 7-9-1 5-4 8-7 9zM12 21c0-5-3-8-7-9 1 5 4 8 7 9zM12 21V9" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="6" r="2.5"/></svg></div>
-              <h3>Metafarmers</h3>
-              <span class="badge amber">Team Lead</span>
-            </div>
-            <p class="xp-role">Robotics Team Lead<span class="domain"> · Agricultural Robotics — AI for sustainable agriculture</span></p>
-          </div>
-          <div class="xp-when">SEP 2025 — PRESENT<span class="loc">Seoul, KR</span></div>
-        </div>
-        <div class="xp-body">
-          <ul class="xp-bullets">
-            <li><span class="em">Leading and building the Robotics AI team</span> — hiring, technical direction and roadmap.</li>
-            <li>Developing <span class="em">autonomous robot navigation</span> for unstructured smart-farm environments.</li>
-            <li>Architecting the <span class="em">multi-robot management system &amp; infrastructure</span> coordinating the fleet.</li>
-          </ul>
-          <div class="flagship">
-            <div class="fl-tag">▣ FLAGSHIP&nbsp;PROGRAM</div>
-            <h5>Omni Farmer</h5>
-            <p>A venture-funded multi-robot fleet operating an outdoor smart farm — targeting near-fully autonomous agricultural operation.</p>
-            <div class="fl-stats">
-              <span class="fl-chip"><b>$2.3M</b> funded</span>
-              <span class="fl-chip"><b>1.65 ha</b> smart farm</span>
-              <span class="fl-chip"><b>90%+</b> autonomy target</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="xp-card">
-        <div class="xp-top">
-          <div>
-            <div class="xp-co">
-              <div class="xp-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><rect x="3" y="9" width="18" height="11" rx="1.5"/><path d="M3 13h18M8 9V6h8v3M8 16h2"/><circle cx="7.5" cy="20.5" r="1.3"/><circle cx="16.5" cy="20.5" r="1.3"/></svg></div>
-              <h3>Floatic</h3>
-              <span class="badge">SW &amp; Platform</span>
-            </div>
-            <p class="xp-role">Robotics Software &amp; Platform Engineer<span class="domain"> · Warehouse Automation — AMRs</span></p>
-          </div>
-          <div class="xp-when">JUL 2022 — SEP 2024<span class="loc">Seoul, KR</span></div>
-        </div>
-        <div class="xp-body">
-          <ul class="xp-bullets">
-            <li>Designed <span class="em">multi-robot navigation systems</span> for logistics warehouses.</li>
-            <li>Built the <span class="em">system architecture</span> for robot software — middleware connecting <span class="em">robots ↔ backend ↔ frontend</span>.</li>
-            <li>Delivered <span class="em">decentralized coordination</span> and <span class="em">congestion-aware navigation</span> with fleet-management software.</li>
-          </ul>
-          <div class="flagship">
-            <div class="fl-tag">▣ FLAGSHIP&nbsp;PROGRAM</div>
-            <h5>Floady</h5>
-            <p>A deployed warehouse AMR fleet running decentralized multi-robot coordination and congestion-aware navigation in production.</p>
-            <div class="fl-stats">
-              <span class="fl-chip"><b>10+</b> robots</span>
-              <span class="fl-chip"><b>300+</b> hrs</span>
-              <span class="fl-chip"><b>90%</b> nav success</span>
-              <span class="fl-chip"><b>&gt;95%</b> task done</span>
-            </div>
-            <a class="fl-demo" href="https://www.youtube.com/watch?v=0acR1xwGQf8">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16 4 12 4 12 4s-4 0-6.8.3c-.4 0-1.2.1-2 .9-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.4C2 13.5 2.2 15 2.2 15s.2 1.4.8 2c.8.8 1.8.8 2.3.9 1.7.1 6.7.2 6.7.2s4 0 6.8-.3c.4 0 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.7.2-3.4v-1.4c0-1.7-.2-3.4-.2-3.4zM9.8 13.9V8.6l5.2 2.7-5.2 2.6z"/></svg>
-              WATCH&nbsp;DEMO
-            </a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<div class="wrap"><div class="divscan"></div></div>
-
-<!-- ============ PROJECTS ============ -->
-<section id="projects">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="idx">// 03</span>
-      <h2>SYSTEM.<b>PROJECTS</b></h2>
-      <span class="meta">SELECTED&nbsp;BUILDS · 06</span>
-    </div>
-    <div class="proj-grid">
-
-      <div class="pcard">
-        <span class="pc-corner"></span>
-        <div class="pc-top">
-          <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><path d="M12 20c0-4 2.5-6.5 6-7.5C17 16.5 14.5 19 12 20zM12 20c0-4-2.5-6.5-6-7.5C7 16.5 9.5 19 12 20zM12 20v-9"/><circle cx="12" cy="7" r="2"/></svg></div>
-          <span class="pc-kind">Agriculture</span>
-        </div>
-        <h4>Omni Farmer</h4>
-        <p>Autonomous multi-robot fleet running a 1.65-ha smart farm — navigation, coordination &amp; management infra targeting 90%+ autonomy.</p>
-        <div class="pc-foot"><span class="t">multi-robot</span><span class="t">fleet-mgmt</span><span class="t">smart-farm</span></div>
-        <a class="pc-link" href="https://metafarmers.ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>metafarmers.ai · in production</a>
-      </div>
-
-      <div class="pcard">
-        <span class="pc-corner"></span>
-        <div class="pc-top">
-          <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.6"><rect x="3" y="8" width="18" height="11" rx="1.5"/><path d="M3 12h18M9 8V5h6v3"/><circle cx="7" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg></div>
-          <span class="pc-kind">Warehouse</span>
-        </div>
-        <h4>Floady</h4>
-        <p>Warehouse AMR fleet: 10+ robots, 300+ field hours, 90% navigation success and decentralized congestion-aware coordination.</p>
-        <div class="pc-foot"><span class="t">AMR</span><span class="t">decentralized</span><span class="t">logistics</span></div>
-        <a class="pc-link" href="https://www.youtube.com/watch?v=0acR1xwGQf8"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 7.2s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16 4 12 4 12 4s-4 0-6.8.3c-.4 0-1.2.1-2 .9-.6.6-.8 2-.8 2S2 8.8 2 10.5v1.4C2 13.5 2.2 15 2.2 15s.2 1.4.8 2c.8.8 1.8.8 2.3.9 1.7.1 6.7.2 6.7.2s4 0 6.8-.3c.4 0 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.7.2-3.4v-1.4c0-1.7-.2-3.4-.2-3.4zM9.8 13.9V8.6l5.2 2.7-5.2 2.6z"/></svg>YOUTUBE DEMO</a>
-      </div>
-
-      <div class="pcard">
-        <span class="pc-corner"></span>
-        <div class="pc-top">
-          <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.6"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5M13 5l-2 14"/></svg></div>
-          <span class="pc-kind">C++ Library</span>
-        </div>
-        <h4>LachaCom<span class="star">★ 5</span></h4>
-        <p>A unified C++ communication library wrapping Serial, Socket, I2C and UART behind one clean transport interface.</p>
-        <div class="pc-foot"><span class="t">cpp</span><span class="t">serial</span><span class="t">i2c</span><span class="t">socket</span></div>
-        <a class="pc-link" href="https://github.com/ladianchad/LachaCom"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C6.2 1.5 1.5 6.2 1.5 12c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.7c-2.7.6-3.3-1.3-3.3-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-1.9 1-2.6-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 014.8 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.8-2.3 4.6-4.5 4.9.3.3.7.9.7 1.8v2.7c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C22.5 6.2 17.8 1.5 12 1.5z"/></svg>github.com/ladianchad/LachaCom</a>
-      </div>
-
-      <div class="pcard">
-        <span class="pc-corner"></span>
-        <div class="pc-top">
-          <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="1.6"><circle cx="6" cy="6" r="2.3"/><circle cx="18" cy="6" r="2.3"/><circle cx="12" cy="18" r="2.3"/><path d="M7.5 7.5l3 8M16.5 7.5l-3 8M8 6h8" stroke-dasharray="2 2"/></svg></div>
-          <span class="pc-kind">MAPF Algo</span>
-        </div>
-        <h4>OCBS</h4>
-        <p>Overlap Conflict-Based Search — a multi-agent path-finding algorithm that resolves overlapping conflicts more efficiently.</p>
-        <div class="pc-foot"><span class="t">mapf</span><span class="t">search</span><span class="t">planning</span></div>
-        <a class="pc-link" href="https://github.com/ladianchad/OCBS"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C6.2 1.5 1.5 6.2 1.5 12c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.7c-2.7.6-3.3-1.3-3.3-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-1.9 1-2.6-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 014.8 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.8-2.3 4.6-4.5 4.9.3.3.7.9.7 1.8v2.7c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C22.5 6.2 17.8 1.5 12 1.5z"/></svg>github.com/ladianchad/OCBS</a>
-      </div>
-
-      <div class="pcard">
-        <span class="pc-corner"></span>
-        <div class="pc-top">
-          <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M18 6l-2 2M8 16l-2 2"/></svg></div>
-          <span class="pc-kind">ROS2 Tool</span>
-        </div>
-        <h4>nav2_config_helper</h4>
-        <p>A configuration helper for ROS2 Nav2 — generates and validates controller, planner and costmap parameter sets.</p>
-        <div class="pc-foot"><span class="t">ros2</span><span class="t">nav2</span><span class="t">config</span></div>
-        <a class="pc-link" href="https://github.com/ladianchad/nav2_config_helper"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C6.2 1.5 1.5 6.2 1.5 12c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.7c-2.7.6-3.3-1.3-3.3-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-1.9 1-2.6-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 014.8 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.8-2.3 4.6-4.5 4.9.3.3.7.9.7 1.8v2.7c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C22.5 6.2 17.8 1.5 12 1.5z"/></svg>github.com/ladianchad/nav2_config_helper</a>
-      </div>
-
-      <div class="pcard">
-        <span class="pc-corner"></span>
-        <div class="pc-top">
-          <div class="pc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.6"><path d="M4 14l8-8 8 8M4 14l8 6 8-6M12 6v14" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="6" r="1.4" fill="#22d3ee"/></svg></div>
-          <span class="pc-kind">LiDAR SLAM</span>
-        </div>
-        <h4>FAST_LIO_SLAM</h4>
-        <p>LiDAR-inertial SLAM (FAST-LIO + Scan Context loop closure) ported and maintained for ROS2.</p>
-        <div class="pc-foot"><span class="t">slam</span><span class="t">lidar</span><span class="t">fast-lio</span></div>
-        <a class="pc-link" href="https://github.com/ladianchad/FAST_LIO_SLAM_ros2"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C6.2 1.5 1.5 6.2 1.5 12c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.7c-2.7.6-3.3-1.3-3.3-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-1.9 1-2.6-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 014.8 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.8-2.3 4.6-4.5 4.9.3.3.7.9.7 1.8v2.7c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C22.5 6.2 17.8 1.5 12 1.5z"/></svg>github.com/ladianchad/FAST_LIO_SLAM_ros2</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="wrap"><div class="divscan"></div></div>
-
-<!-- ============ RESEARCH & OSS ============ -->
-<section id="research">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="idx">// 04</span>
-      <h2>SYSTEM.<b>RESEARCH</b></h2>
-      <span class="meta">PUBLICATIONS · OPEN&nbsp;SOURCE</span>
-    </div>
-    <div class="res-grid">
-
-      <div class="panel">
-        <div class="panel-head"><svg class="c-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h11l5 5v9a1 1 0 01-1 1H5a1 1 0 01-1-1V5z"/><path d="M14 5v5h5M8 14h8M8 17h6"/></svg>RESEARCH &amp; PUBLICATIONS</div>
-        <div class="panel-body">
-          <div class="res-lab">
-            <div class="yr">2019–2021</div>
-            <div>
-              <h4>AIRO Lab — Hanyang University ERICA</h4>
-              <p>Undergraduate Researcher · Vision-based pose estimation. Advisor: Prof. Min-Sung Kang.</p>
-            </div>
-          </div>
-          <div>
-            <div class="pub">
-              <div class="pmeta">J. KSPE · 2025 · CO-AUTHOR <span class="st">· UNDER REVIEW</span></div>
-              <h5>Improving Multi-agent Path Finding in Clustered Environments Using Agent Merging and Splitting</h5>
-            </div>
-            <div class="pub">
-              <div class="pmeta">J. KSPE · 2025 · CO-AUTHOR <span class="st">· UNDER REVIEW</span></div>
-              <h5>Improving Conflict-Based Search with Continuous Time using Space Utilization</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head"><svg class="c-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5v7M8 18h7.5M18 8.5a3 3 0 01-3 3H8"/></svg>OPEN SOURCE — ROS2</div>
-        <div class="panel-body">
-          <p class="oss-intro">Upstream contributions to <b>ROS2 Navigation2</b> — the navigation stack used across the robotics industry — plus the ROS2 core client library.</p>
-          <div class="oss-item">
-            <a class="pr" href="https://github.com/ros-navigation/navigation2/pull/3068">#3068</a>
-            <div><h5>Nav2 · BT Navigator refactor</h5><p>Refactored the Behavior Tree Navigator into a plugin-oriented architecture for extensibility.</p></div>
-          </div>
-          <div class="oss-item">
-            <a class="pr" href="https://github.com/ros-navigation/navigation2/pull/3927">#3927</a>
-            <div><h5>Nav2 · Bug fix</h5><p>Behavior-tree navigation defect fixed and merged upstream.</p></div>
-          </div>
-          <div class="oss-item">
-            <a class="pr" href="https://github.com/ros-navigation/navigation2/pull/3141">#3141</a>
-            <div><h5>Nav2 · Bug fix</h5><p>Navigation stack defect resolution merged upstream.</p></div>
-          </div>
-          <div class="oss-item">
-            <a class="pr" href="https://github.com/ros2/rcl/pull/1003">#1003</a>
-            <div><h5>ros2 / rcl · Core library</h5><p>Contribution to the ROS2 client library (rcl) core.</p></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="wrap"><div class="divscan"></div></div>
-
-<!-- ============ SKILLS ============ -->
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="idx">// 05</span>
-      <h2>SYSTEM.<b>SKILLS</b></h2>
-      <span class="meta">STACK&nbsp;MANIFEST</span>
-    </div>
-    <div class="skills-grid">
-
-      <div class="skill-block">
-        <div class="sb-head"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5M13 4l-2 16"/></svg>LANGUAGES<span class="n">06</span></div>
-        <div class="chips">
-          <span class="chip key">C</span><span class="chip key">C++</span><span class="chip key">Python</span>
-          <span class="chip">Java</span><span class="chip">Kotlin</span><span class="chip">SQL</span>
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="sb-head"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="1.4"/><circle cx="15" cy="9" r="1.4"/><path d="M8 15c1 1 2.5 1.5 4 1.5s3-.5 4-1.5"/></svg>ROBOTICS / ML<span class="n">07</span></div>
-        <div class="chips">
-          <span class="chip key">ROS</span><span class="chip key">ROS2</span><span class="chip key">Nav2</span>
-          <span class="chip">SLAM · FAST-LIO</span><span class="chip">OpenCV</span><span class="chip">PyTorch</span><span class="chip">QT / PyQT</span>
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="sb-head"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>BACKEND / PLATFORM<span class="n">04</span></div>
-        <div class="chips">
-          <span class="chip">Spring Boot</span><span class="chip">NestJS</span><span class="chip">Node.js</span><span class="chip">MySQL</span>
-        </div>
-      </div>
-
-      <div class="skill-block">
-        <div class="sb-head"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.7"><path d="M5 13a4 4 0 010-8 5.5 5.5 0 0110.5-1A4.5 4.5 0 0118 13H5z"/><path d="M9 17l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>DEVOPS / INFRA<span class="n">03</span></div>
-        <div class="chips">
-          <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">AWS</span>
-        </div>
-      </div>
-
-      <div class="skill-block" style="grid-column:1 / -1;">
-        <div class="sb-head"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.7"><path d="M14.7 6.3l3 3L9 18H6v-3l8.7-8.7z"/><path d="M13 8l3 3M3 21l4-1"/></svg>TOOLS &amp; HARDWARE<span class="n">03</span></div>
-        <div class="chips">
-          <span class="chip">Arduino</span><span class="chip">MATLAB</span><span class="chip">SolidWorks</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="wrap"><div class="divscan"></div></div>
-
-<!-- ============ AWARDS / EDUCATION ============ -->
-<section id="awards">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="idx">// 06</span>
-      <h2>SYSTEM.<b>HONORS</b></h2>
-      <span class="meta">AWARDS · EDUCATION</span>
-    </div>
-    <div class="aw-grid">
-
-      <div class="panel">
-        <div class="panel-head"><svg class="c-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="9" r="5"/><path d="M9 13.5L7 21l5-2.5L17 21l-2-7.5"/></svg>AWARDS &amp; SCHOLARSHIPS</div>
-        <div class="panel-body">
-          <div class="aw-list">
-            <div class="aw-row">
-              <div class="aw-medal"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><circle cx="12" cy="10" r="5"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
-              <div class="info"><h4>National Capstone Design Competition</h4><p>Special Prize</p></div>
-              <div class="yr">2022</div>
-            </div>
-            <div class="aw-row">
-              <div class="aw-medal"><svg viewBox="0 0 24 24" fill="none" stroke="#9fb0c6" stroke-width="1.6"><circle cx="12" cy="10" r="5"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
-              <div class="info"><h4>Creative Engineering Design Competition</h4><p>Silver Award</p></div>
-              <div class="yr">2021</div>
-            </div>
-            <div class="aw-row">
-              <div class="aw-medal"><svg viewBox="0 0 24 24" fill="none" stroke="#f5a623" stroke-width="1.6"><circle cx="12" cy="10" r="5"/><path d="M9 14l-2 7 5-3 5 3-2-7"/></svg></div>
-              <div class="info"><h4>CARE Innovation Idea Contest</h4><p>Grand Prize</p></div>
-              <div class="yr">2021</div>
-            </div>
-            <div class="aw-row">
-              <div class="aw-medal"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.6"><path d="M12 3l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/></svg></div>
-              <div class="info"><h4>Hanyang Rainbow Scholarship</h4><p>Merit scholarship</p></div>
-              <div class="yr">'16–'23</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="edu-card">
-        <div class="ec-deg">B.S. Robotics Engineering</div>
-        <div class="ec-uni">Hanyang University ERICA</div>
-        <div class="ec-when">MAR 2016 — FEB 2023 · ANSAN, KR</div>
-        <div class="gpa-row">
-          <div class="gpa"><div class="v">3.69<span class="max">/4.5</span></div><div class="l">Overall GPA</div></div>
-          <div class="gpa hl"><div class="v">3.92<span class="max">/4.5</span></div><div class="l">Major GPA</div></div>
-        </div>
-        <div class="ec-cap"><b>Capstone Project</b>Automotive Marine Rescue Robot — an amphibious rescue platform combining autonomous navigation and embedded control.</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT FOOTER ============ -->
-<footer class="footer" id="contact">
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-id">
-        <div class="ftag">// SYSTEM.CONTACT — TRANSMISSION OPEN</div>
-        <h2>Let's coordinate<br>the <span class="hl">next fleet.</span></h2>
-        <p>Open to robotics work in multi-robot navigation, MAPF, and fleet autonomy — research collaborations and engineering roles alike.</p>
-      </div>
-      <div class="foot-links">
-        <a class="foot-link" href="mailto:qhrejddlvltm@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          <span class="k">EMAIL</span>qhrejddlvltm@gmail.com
-        </a>
-        <a class="foot-link" href="https://github.com/ladianchad">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1.5C6.2 1.5 1.5 6.2 1.5 12c0 4.6 3 8.5 7.2 9.9.5.1.7-.2.7-.5v-1.7c-2.7.6-3.3-1.3-3.3-1.3-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.5-1.1-4.5-4.9 0-1.1.4-1.9 1-2.6-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.3 9.3 0 014.8 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.5 1 2.6 0 3.8-2.3 4.6-4.5 4.9.3.3.7.9.7 1.8v2.7c0 .3.2.6.7.5 4.2-1.4 7.2-5.3 7.2-9.9C22.5 6.2 17.8 1.5 12 1.5z"/></svg>
-          <span class="k">GITHUB</span>github.com/ladianchad
-        </a>
-        <a class="foot-link" href="https://www.linkedin.com/in/ch-ladi">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05C21.4 8.65 22 11 22 14v7h-4v-6.2c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3V21h-4z"/></svg>
-          <span class="k">LINKEDIN</span>linkedin.com/in/ch-ladi
-        </a>
-        <a class="foot-link" href="https://coding-robot.tistory.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h7"/></svg>
-          <span class="k">BLOG</span>coding-robot.tistory.com
-        </a>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <div><span class="pulse"></span>CHANHUI JUNG · 정찬희 — ROBOTICS SW ENGINEER</div>
-      <div>SEOUL, KR · FLEET TELEMETRY · © 2026</div>
-    </div>
-  </div>
-</footer>
-
-
-<script>
-  // 외부 링크는 새 탭으로 — 마크업을 그대로 두고 런타임에 부여 (JS 없어도 동작에 지장 없음)
-  document.querySelectorAll('a[href^="http"]').forEach(function(a){
-    if(a.host !== location.host){ a.target = '_blank'; a.rel = 'noopener noreferrer'; }
-  });
-  // 스크롤 위치에 따라 상단 내비 활성 표시 (점진적 향상)
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.topnav a'));
-  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
-  if('IntersectionObserver' in window && sections.length){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var id = e.target.id;
-          navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + id); });
-        }
-      });
-    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-    sections.forEach(function(s){ io.observe(s); });
-  }
-</script>
 </body>
 </html>
